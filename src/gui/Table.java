@@ -10,4 +10,7 @@ public class Table {
     niz od 4 parkinga
 
      */
+    public Table(){
+        Field[] arrayOfFigures= new Field[40];
+    }
 }

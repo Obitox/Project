@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class GUI extends Application {
 
     private Pane pane;
-    private Circle[] field;
+    private Figure[] fields;
 
     public static void main(String[] args) {
         launch(args);
@@ -27,29 +27,30 @@ public class GUI extends Application {
 
 
         pane = new Pane();
-        field = new Circle[10];
+        fields = new Figure[40];
+
         double temp = 0;
 
 
         pane.setMaxWidth(600);
         pane.setMaxHeight(600);
 
-        for (int i=0;i<field.length;i++){
+        for (int i=0;i<fields.length;i++){
             pane.setMaxHeight(500);
             pane.setMaxWidth(600);
             temp+=60;
 
-            field[i] = new Circle();
-            field[i].setFill(Color.RED);
-            //Paint p = field[i].getFill();
-            //String s = p.toString();
-            //System.out.println(p.equals(Color.RED)+"asdasdasdasd");
-            //System.out.println(s);
-            field[i].setRadius(25.0);
-            field[i].setCenterX(50.0 + temp);
-            field[i].setCenterY(50.0);
+            //fields[i] = new Field(new Circle());
+            //fields[i].setFill(Color.RED);
+            ////Paint p = field[i].getFill();
+            ////String s = p.toString();
+            ////System.out.println(p.equals(Color.RED)+"asdasdasdasd");
+            ////System.out.println(s);
+            //field[i].setRadius(25.0);
+            //field[i].setCenterX(50.0 + temp);
+            //field[i].setCenterY(50.0);
 
-            pane.getChildren().add(field[i]);
+            //pane.getChildren().add(field[i]);
             System.out.println("i: "+temp);
         }
 
