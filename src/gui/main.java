@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 /**
  * Created by Vlatacom on 17.3.2017..
