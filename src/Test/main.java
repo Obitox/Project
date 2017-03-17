@@ -2,9 +2,8 @@ package Test;
 
 public class main {
     public static void main(String[] args) {
-
         System.out.println("Ja sam car");
-        System.out.println("testtt");
+        System.out.println("Ja sam Blagoje");
 
     }
 }
