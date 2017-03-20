@@ -35,4 +35,11 @@ public class Field {
     public void setColor(Color color) {
         this.fieldShape.setFill(color);
     }
+
+    public boolean isTaken(){
+        if(color!=defaultColor)return false;
+        else{
+            return true;
+        }
+    }
 }
