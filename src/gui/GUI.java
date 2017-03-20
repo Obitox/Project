@@ -67,28 +67,6 @@ public class GUI extends Application {
 
 
         //RedButtonsArray Element init
-        int counter=0;
-        for (int i=0;i<redButtons.length;i++)
-        {
-            for (int j=0;j<redButtons.length;j++) {
-                counter++;
-                redButtons[i][j] = new Button(""+counter);
-                redGridPane.add(redButtons[i][j],j,i);
-            }
-        }
-
-        //Set position of GridPane
-        redGridPane.setLayoutX(900);
-        redGridPane.setLayoutY(60);
-
-        //BlueButtonArray initSize
-        blueButtons = new Button[2][2];
-
-        //BlueGrid pane
-        redGridPane = new GridPane();
-
-
-        //RedButtonsArray Element init
         int counterButton=0;
         for (int i=0;i<redButtons.length;i++)
         {
@@ -99,15 +77,93 @@ public class GUI extends Application {
             }
         }
 
-        //Set position of GridPane
+        //Set position of RedGridPane
         redGridPane.setLayoutX(900);
         redGridPane.setLayoutY(60);
+
+        //BlueButtonArray initSize
+        blueButtons = new Button[2][2];
+
+        //BlueGrid pane
+        blueGridPane = new GridPane();
+
+
+        //BlueButtonsArray Element init
+        counterButton=0;
+        for (int i=0;i<blueButtons.length;i++)
+        {
+            for (int j=0;j<blueButtons.length;j++) {
+                counterButton++;
+                blueButtons[i][j] = new Button(""+counterButton);
+                blueGridPane.add(blueButtons[i][j],j,i);
+            }
+        }
+
+        //Set position of BlueGridPane
+        blueGridPane.setLayoutX(900);
+        blueGridPane.setLayoutY(250);
+
+
+
+        //YellowButtonArray initSize
+        yellowButtons = new Button[2][2];
+
+        //YellowGrid pane
+        yellowGridPane = new GridPane();
+
+
+        //YellowButtonArray Element init
+        counterButton=0;
+        for (int i=0;i<yellowButtons.length;i++)
+        {
+            for (int j=0;j<yellowButtons.length;j++) {
+                counterButton++;
+                yellowButtons[i][j] = new Button(""+counterButton);
+                yellowGridPane.add(yellowButtons[i][j],j,i);
+            }
+        }
+
+        //Set position of YellowGridPane
+        yellowGridPane.setLayoutX(900);
+        yellowGridPane.setLayoutY(430);
+
+
+
+
+
+
+        //GreenButtonArray initSize
+        greenButtons = new Button[2][2];
+
+        //GreenGrid pane
+        greenGridPane = new GridPane();
+
+
+        //GreenButtonArray Element init
+        counterButton=0;
+        for (int i=0;i<greenButtons.length;i++)
+        {
+            for (int j=0;j<greenButtons.length;j++) {
+                counterButton++;
+                greenButtons[i][j] = new Button(""+counterButton);
+                greenGridPane.add(greenButtons[i][j],j,i);
+            }
+        }
+
+        //Set position of GreenGridPane
+        greenGridPane.setLayoutX(900);
+        greenGridPane.setLayoutY(600);
+
+
 
 
 
 
         pane = new Pane();
         pane.getChildren().add(redGridPane);
+        pane.getChildren().add(blueGridPane);
+        pane.getChildren().add(greenGridPane);
+        pane.getChildren().add(yellowGridPane);
         arrayOfCircles = new Field[40];
         testButton = new Button("Move");
 

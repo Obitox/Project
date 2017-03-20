@@ -12,9 +12,9 @@ public class Figure {
     private Color color;
 
 
-    public Figure(int position, Color c){
+    public Figure(Color c, int position){
         //goes from 1 to 4
-        id = ++counter;
+        id = (counter++)%4+1;
         this.color = c;
         this.position = position;
     }
