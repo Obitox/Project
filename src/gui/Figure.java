@@ -13,7 +13,7 @@ public class Figure {
 
 
     public Figure(int position, Color c){
-        //goes from 1 to 4 BLAGOJE
+        //goes from 1 to 4
         id = ++counter;
         this.color = c;
         this.position = position;

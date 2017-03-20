@@ -148,8 +148,8 @@ public class GUI extends Application {
 
 
 
-        pane.setMaxWidth(600);
-        pane.setMaxHeight(600);
+        pane.setMaxWidth(1200);
+        pane.setMaxHeight(900);
 
         for(int i=0;i<arrayOfCircles.length;i++){
             arrayOfCircles[i] = new Field(new Circle(25));
