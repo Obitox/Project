@@ -10,21 +10,21 @@ public class Field {
     private static int counter = 0;
     private int id = 0;
     private Color color;
-    Circle  circle;
+    Circle  fieldShape;
     public static final Color defaultColor = Color.BLACK;;
 
     public Field(Circle circle){
         id = counter++;
         color = defaultColor;
-        this.circle = circle;
+        this.fieldShape = circle;
     }
 
     public int getId() {
         return id;
     }
 
-    public Circle getCircle() {
-        return circle;
+    public Circle getFieldShape() {
+        return fieldShape;
     }
 
 
