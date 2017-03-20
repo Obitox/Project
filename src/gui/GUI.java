@@ -65,7 +65,7 @@ public class GUI extends Application {
 
         testButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                int dice = random.nextInt(5)+1;
+                int dice = random.nextInt(6)+1;
                 System.out.println("Dice roll: "+dice);
                 if(currentPosition>0){
                     arrayOfCircles[currentPosition].getFieldShape().setFill(Color.BLACK);
