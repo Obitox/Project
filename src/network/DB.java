@@ -12,7 +12,7 @@ public class DB {
             Class.forName("com.mysql.jdbc.Driver");
             for (int i = 0; i < MAX_CON; i++) {
                 bafer[i] =
-                        DriverManager.getConnection("jdbc:mysql://localhost:3306/dbkorisnik", "root", "");
+                        DriverManager.getConnection("jdbc:mysql://localhost:3306/ludo", "root", "");
             }
         } catch (Exception e) {
             e.printStackTrace();
