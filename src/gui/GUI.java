@@ -21,11 +21,17 @@ public class GUI extends Application {
     private Random random = new Random();
 
     private int temp=0;
-    // House Arrays
+    // Parking Arrays
     private Field[] redParking;
     private Field[] blueParking;
     private Field[] yellowParking;
     private Field[] greenParking;
+
+    // House Arrays
+    private Field[] redHouse;
+    private Field[] blueHouse;
+    private Field[] yellowHouse;
+    private Field[] greenHouse;
 
     public static void main(String[] args) {
         launch(args);
@@ -34,7 +40,7 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        primaryStage.setWidth(900);
+        primaryStage.setWidth(1200);
         primaryStage.setHeight(900);
 
 
@@ -45,19 +51,38 @@ public class GUI extends Application {
 
         pane.getChildren().add(testButton);
 
-        //Arrays
+        //ArraysParking
         redParking = new Field[4];
         blueParking = new Field[4];
         greenParking = new Field[4];
         yellowParking = new Field[4];
 
+        //ArraysHouse
+        redHouse = new Field[4];
+        blueHouse = new Field[4];
+        yellowHouse = new Field[4];
+        greenHouse = new Field[4];
+
+        //Init redHouse
         int houseTemp=0;
+        for (int i=0;i<redHouse.length;i++)
+        {
+            houseTemp +=60;
+            redHouse[i] = new Field(new Circle(25));
+            redHouse[i].getFieldShape().setCenterY(60+houseTemp);
+            redHouse[i].getFieldShape().setCenterX(780);
+            redHouse[i].setColor(Color.RED);
+            pane.getChildren().add(redHouse[i].getFieldShape());
+        }
+
+
+        int parkingTemp =0;
         //Init redParking
         for (int i = 0; i< redParking.length; i++)
         {
-            houseTemp+=60;
+            parkingTemp +=60;
             redParking[i] = new Field(new Circle(25));
-            redParking[i].getFieldShape().setCenterY(60+houseTemp);
+            redParking[i].getFieldShape().setCenterY(60+ parkingTemp);
             redParking[i].getFieldShape().setCenterX(600);
             redParking[i].setColor(Color.RED);
             pane.getChildren().add(redParking[i].getFieldShape());
@@ -83,38 +108,38 @@ public class GUI extends Application {
 
 
 
-        houseTemp=0;
+        parkingTemp =0;
         //Init blueParking
         for (int i = 0; i< blueParking.length; i++)
         {
-            houseTemp+=60;
+            parkingTemp +=60;
             blueParking[i] = new Field(new Circle(25));
             blueParking[i].getFieldShape().setCenterY(600);
-            blueParking[i].getFieldShape().setCenterX(660-houseTemp);
+            blueParking[i].getFieldShape().setCenterX(660- parkingTemp);
             blueParking[i].setColor(Color.BLUE);
             pane.getChildren().add(blueParking[i].getFieldShape());
         }
 
         //Init greenParking
-        houseTemp=0;
+        parkingTemp =0;
         for (int i = 0; i< greenParking.length; i++)
         {
-            houseTemp+=60;
+            parkingTemp +=60;
             greenParking[i] = new Field(new Circle(25));
-            greenParking[i].getFieldShape().setCenterY(660-houseTemp);
+            greenParking[i].getFieldShape().setCenterY(660- parkingTemp);
             greenParking[i].getFieldShape().setCenterX(120);
             greenParking[i].setColor(Color.GREEN);
             pane.getChildren().add(greenParking[i].getFieldShape());
         }
 
         //Init yellowParking
-        houseTemp=0;
+        parkingTemp =0;
         for (int i = 0; i< yellowParking.length; i++)
         {
-            houseTemp+=60;
+            parkingTemp +=60;
             yellowParking[i] = new Field(new Circle(25));
             yellowParking[i].getFieldShape().setCenterY(120);
-            yellowParking[i].getFieldShape().setCenterX(60+houseTemp);
+            yellowParking[i].getFieldShape().setCenterX(60+ parkingTemp);
             yellowParking[i].setColor(Color.YELLOW);
             pane.getChildren().add(yellowParking[i].getFieldShape());
         }
