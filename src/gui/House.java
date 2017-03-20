@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 /**
  * Created by Vlatacom on 17.3.2017..
  */
-public class House {
+public class  House {
     private int startPosition;
     private int endPosition;
     private Color color;
