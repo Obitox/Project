@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 public class  House {
     private int startPosition;
     private int endPosition;
+    private Color defaultColor;
     private Color color;
     private Figure[] arrayOfFigures = new Figure[4];
 
@@ -29,7 +30,7 @@ public class  House {
         }
         for(int i=0; i<arrayOfFigures.length;i++)
         {
-            arrayOfFigures[i]=new Figure(startPosition, color);
+            arrayOfFigures[i]=new Figure(color,startPosition);
         }
     }
 
