@@ -22,10 +22,10 @@ public class GUI extends Application {
 
     private int temp=0;
     // House Arrays
-    private Field[] redHouses;
-    private Field[] blueHouses;
-    private Field[] yellowHouses;
-    private Field[] greenHouses;
+    private Field[] redParking;
+    private Field[] blueParking;
+    private Field[] yellowParking;
+    private Field[] greenParking;
 
     public static void main(String[] args) {
         launch(args);
@@ -34,8 +34,8 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        primaryStage.setWidth(750);
-        primaryStage.setHeight(750);
+        primaryStage.setWidth(900);
+        primaryStage.setHeight(900);
 
 
 
@@ -46,20 +46,21 @@ public class GUI extends Application {
         pane.getChildren().add(testButton);
 
         //Arrays
-        redHouses = new Field[4];
-        blueHouses = new Field[4];
-        greenHouses = new Field[4];
-        yellowHouses = new Field[4];
+        redParking = new Field[4];
+        blueParking = new Field[4];
+        greenParking = new Field[4];
+        yellowParking = new Field[4];
 
         int houseTemp=0;
-        //Init redHouses
-        for (int i=0;i<redHouses.length;i++)
+        //Init redParking
+        for (int i = 0; i< redParking.length; i++)
         {
             houseTemp+=60;
-            redHouses[i] = new Field(new Circle(25));
-            redHouses[i].getFieldShape().setCenterY(60+houseTemp);
-            redHouses[i].getFieldShape().setCenterX(600);
-            pane.getChildren().add(redHouses[i].getFieldShape());
+            redParking[i] = new Field(new Circle(25));
+            redParking[i].getFieldShape().setCenterY(60+houseTemp);
+            redParking[i].getFieldShape().setCenterX(600);
+            redParking[i].setColor(Color.RED);
+            pane.getChildren().add(redParking[i].getFieldShape());
         }
 
 
@@ -83,36 +84,39 @@ public class GUI extends Application {
 
 
         houseTemp=0;
-        //Init blueHouses
-        for (int i=0;i<blueHouses.length;i++)
+        //Init blueParking
+        for (int i = 0; i< blueParking.length; i++)
         {
             houseTemp+=60;
-            blueHouses[i] = new Field(new Circle(25));
-            blueHouses[i].getFieldShape().setCenterY(600);
-            blueHouses[i].getFieldShape().setCenterX(660-houseTemp);
-            pane.getChildren().add(blueHouses[i].getFieldShape());
+            blueParking[i] = new Field(new Circle(25));
+            blueParking[i].getFieldShape().setCenterY(600);
+            blueParking[i].getFieldShape().setCenterX(660-houseTemp);
+            blueParking[i].setColor(Color.BLUE);
+            pane.getChildren().add(blueParking[i].getFieldShape());
         }
 
-        //Init greenHouses
+        //Init greenParking
         houseTemp=0;
-        for (int i=0;i<greenHouses.length;i++)
+        for (int i = 0; i< greenParking.length; i++)
         {
             houseTemp+=60;
-            greenHouses[i] = new Field(new Circle(25));
-            greenHouses[i].getFieldShape().setCenterY(660-houseTemp);
-            greenHouses[i].getFieldShape().setCenterX(120);
-            pane.getChildren().add(greenHouses[i].getFieldShape());
+            greenParking[i] = new Field(new Circle(25));
+            greenParking[i].getFieldShape().setCenterY(660-houseTemp);
+            greenParking[i].getFieldShape().setCenterX(120);
+            greenParking[i].setColor(Color.GREEN);
+            pane.getChildren().add(greenParking[i].getFieldShape());
         }
 
-        //Init yellowHouses
+        //Init yellowParking
         houseTemp=0;
-        for (int i=0;i<yellowHouses.length;i++)
+        for (int i = 0; i< yellowParking.length; i++)
         {
             houseTemp+=60;
-            yellowHouses[i] = new Field(new Circle(25));
-            yellowHouses[i].getFieldShape().setCenterY(120);
-            yellowHouses[i].getFieldShape().setCenterX(60+houseTemp);
-            pane.getChildren().add(yellowHouses[i].getFieldShape());
+            yellowParking[i] = new Field(new Circle(25));
+            yellowParking[i].getFieldShape().setCenterY(120);
+            yellowParking[i].getFieldShape().setCenterX(60+houseTemp);
+            yellowParking[i].setColor(Color.YELLOW);
+            pane.getChildren().add(yellowParking[i].getFieldShape());
         }
 
 

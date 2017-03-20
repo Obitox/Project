@@ -33,6 +33,6 @@ public class Field {
     }
 
     public void setColor(Color color) {
-        this.color = color;
+        this.fieldShape.setFill(color);
     }
 }
