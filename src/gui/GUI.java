@@ -5,10 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -68,6 +66,7 @@ public class GUI extends Application {
         testButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 int dice = random.nextInt(5)+1;
+                System.out.println("Dice roll: "+dice);
                 if(currentPosition>0){
                     arrayOfCircles[currentPosition].getFieldShape().setFill(Color.BLACK);
                 }
