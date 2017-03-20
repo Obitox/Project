@@ -3,15 +3,14 @@ package gui;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-/**
- * Created by Vlatacom on 17.3.2017..
- */
 public class Field {
+    public static final Color defaultColor = Color.BLACK;
     private static int counter = 0;
+
     private int id = 0;
     private Color color;
-    Circle  fieldShape;
-    public static final Color defaultColor = Color.BLACK;;
+    private Circle  fieldShape;
+
 
     public Field(Circle circle){
         id = counter++;
@@ -23,22 +22,21 @@ public class Field {
         return id;
     }
 
-    public Circle getFieldShape() {
-        return fieldShape;
+    public void setColor(Color color) {
+        this.fieldShape.setFill(color);
     }
-
-
     public Color getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
-        this.fieldShape.setFill(color);
+    public Circle getFieldShape() {
+        return fieldShape;
     }
 
     public boolean isTaken(){
-        if(color!=defaultColor)return false;
-        else{
+        if(color!=defaultColor) {
+            return false;
+        }else{
             return true;
         }
     }
