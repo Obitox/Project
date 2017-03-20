@@ -10,13 +10,11 @@ public class Figure {
     private int id;
     private int position;
     private Color color;
-    private boolean amIinGame;
 
 
     public Figure(int position, Color c){
         //goes from 1 to 4 BLAGOJE
         id = ++counter;
-        amIinGame = false;
         this.color = c;
         this.position = position;
     }
@@ -42,11 +40,4 @@ public class Figure {
         this.color = color;
     }
 
-    public boolean isAmIinGame() {
-        return amIinGame;
-    }
-
-    public void setAmIinGame(boolean amIinGame) {
-        this.amIinGame = amIinGame;
-    }
 }
