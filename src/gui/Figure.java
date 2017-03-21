@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
  * Created by Vlatacom on 17.3.2017..
  */
 public class Figure {
-    private static int counter= 0;
+    private static int counter = 0;
     private int id;
     private int position;
     private Color color;

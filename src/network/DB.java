@@ -16,6 +16,8 @@ public class DB {
                         System.out.println("Connection sucessful");
             }
         } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+
             e.printStackTrace();
         }
     }
