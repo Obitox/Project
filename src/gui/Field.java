@@ -3,7 +3,7 @@ package gui;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class Field {
+public class Field extends Circle {
     public static final Color defaultColor = Color.BLACK;
     private static int counter = 0;
 
@@ -12,25 +12,21 @@ public class Field {
     private Circle  fieldShape;
 
 
-    public Field(Circle circle){
+    public Field(){
         id = counter++;
         color = defaultColor;
-        this.fieldShape = circle;
+        this.setRadius(25);
     }
 
-    public int getId() {
+    public int getFieldId() {
         return id;
     }
 
     public void setColor(Color color) {
-        this.fieldShape.setFill(color);
+        this.setFill(color);
     }
     public Color getColor() {
         return color;
-    }
-
-    public Circle getFieldShape() {
-        return fieldShape;
     }
 
     public boolean isTaken(){

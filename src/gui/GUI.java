@@ -130,8 +130,6 @@ public class GUI extends Application {
 
 
 
-
-
         //GreenButtonArray initSize
         greenButtons = new Button[2][2];
 
@@ -154,27 +152,122 @@ public class GUI extends Application {
         greenGridPane.setLayoutX(900);
         greenGridPane.setLayoutY(600);
 
-
-
-
-
-
+        //Main Pane Init
         pane = new Pane();
+
+        //Calling initFields
+        initFields(pane);
+
+        //Calling initHouses
+        initHouses(pane);
+
+        //Calling initParkings
+        initParkings(pane);
+
+
+
         pane.getChildren().add(redGridPane);
         pane.getChildren().add(blueGridPane);
         pane.getChildren().add(greenGridPane);
         pane.getChildren().add(yellowGridPane);
-        arrayOfCircles = new Field[40];
+
+
         testButton = new Button("Move");
 
         pane.getChildren().add(testButton);
 
-        //ArraysParking
+        testButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                int dice = random.nextInt(6)+1;
+                System.out.println("Dice roll: "+dice);
+                if(currentPosition>0){
+                    arrayOfCircles[currentPosition].setFill(Color.BLACK);
+                }
+                if(dice + currentPosition > 39){
+                    currentPosition =0;
+                }
+                else {
+                    arrayOfCircles[dice + currentPosition].setFill(Color.RED);
+                    currentPosition += dice;
+                }
+            }
+        });
+
+        pane.setMaxWidth(1200);
+        pane.setMaxHeight(900);
+
+        primaryStage.show();
+        primaryStage.setScene(new Scene(pane));
+        primaryStage.setTitle("Ludo");
+    }
+
+
+
+    //Init all the parkings RED BLUE GREEN YELLOW
+    public void initParkings(Pane pane){
+
+        //ArraysParking size init
         redParking = new Field[4];
         blueParking = new Field[4];
         greenParking = new Field[4];
         yellowParking = new Field[4];
 
+        int parkingTemp =0;
+        //Init redParking
+        for (int i = 0; i< redParking.length; i++)
+        {
+            parkingTemp +=60;
+            redParking[i] = new Field();
+            redParking[i].setCenterY(60+ parkingTemp);
+            redParking[i].setCenterX(600);
+            redParking[i].setColor(Color.RED);
+            pane.getChildren().add(redParking[i]);
+        }
+
+        parkingTemp =0;
+        //Init blueParking
+        for (int i = 0; i< blueParking.length; i++)
+        {
+            parkingTemp +=60;
+            blueParking[i] = new Field();
+            blueParking[i].setCenterY(600);
+            blueParking[i].setCenterX(660- parkingTemp);
+            blueParking[i].setColor(Color.BLUE);
+            pane.getChildren().add(blueParking[i]);
+        }
+
+        //Init greenParking
+        parkingTemp =0;
+        for (int i = 0; i< greenParking.length; i++)
+        {
+            parkingTemp +=60;
+            greenParking[i] = new Field();
+            greenParking[i].setCenterY(660- parkingTemp);
+            greenParking[i].setCenterX(120);
+            greenParking[i].setColor(Color.GREEN);
+            pane.getChildren().add(greenParking[i]);
+        }
+
+        //Init yellowParking
+        parkingTemp =0;
+        for (int i = 0; i< yellowParking.length; i++)
+        {
+            parkingTemp +=60;
+            yellowParking[i] = new Field();
+            yellowParking[i].setCenterY(120);
+            yellowParking[i].setCenterX(60+ parkingTemp);
+            yellowParking[i].setColor(Color.YELLOW);
+            pane.getChildren().add(yellowParking[i]);
+        }
+    }
+
+
+
+
+
+
+    //Init all the houses RED GREEN BLUE YELLOW
+    public void initHouses(Pane pane){
         //ArraysHouse
         redHouse = new Field[4];
         blueHouse = new Field[4];
@@ -183,23 +276,27 @@ public class GUI extends Application {
 
         //Init redHouse
         int houseTemp=0;
+        int colorChanger=0;
+        double opacityChanger=1.0;
         for (int i=0;i<redHouse.length;i++)
         {
             houseTemp+=60;
-            redHouse[i] = new Field(new Circle(25));
-            redHouse[i].getFieldShape().setCenterX(720+houseTemp);
-            redHouse[i].getFieldShape().setCenterY(60);
+            colorChanger+=45;
+            opacityChanger-=0.1;
+            redHouse[i] = new Field();
+            redHouse[i].setCenterX(720+houseTemp);
+            redHouse[i].setCenterY(60);
             if(houseTemp==180)
             {
                 houseTemp=60;
             }
             if(i>1){
 
-                redHouse[i].getFieldShape().setCenterY(120);
-                redHouse[i].getFieldShape().setCenterX(720+houseTemp);
+                redHouse[i].setCenterY(120);
+                redHouse[i].setCenterX(720+houseTemp);
             }
-            pane.getChildren().add(redHouse[i].getFieldShape());
-            redHouse[i].setColor(Color.RED);
+            pane.getChildren().add(redHouse[i]);
+            redHouse[i].setColor(Color.rgb(255-colorChanger,0,0,opacityChanger));
         }
 
 
@@ -208,19 +305,19 @@ public class GUI extends Application {
         for (int i=0;i<blueHouse.length;i++)
         {
             houseTemp+=60;
-            blueHouse[i] = new Field(new Circle(25));
-            blueHouse[i].getFieldShape().setCenterX(720+houseTemp);
-            blueHouse[i].getFieldShape().setCenterY(240);
+            blueHouse[i] = new Field();
+            blueHouse[i].setCenterX(720+houseTemp);
+            blueHouse[i].setCenterY(240);
             if(houseTemp==180)
             {
                 houseTemp=60;
             }
             if(i>1){
 
-                blueHouse[i].getFieldShape().setCenterY(300);
-                blueHouse[i].getFieldShape().setCenterX(720+houseTemp);
+                blueHouse[i].setCenterY(300);
+                blueHouse[i].setCenterX(720+houseTemp);
             }
-            pane.getChildren().add(blueHouse[i].getFieldShape());
+            pane.getChildren().add(blueHouse[i]);
             blueHouse[i].setColor(Color.BLUE);
         }
         //Init yellowHouse
@@ -228,19 +325,19 @@ public class GUI extends Application {
         for (int i=0;i<yellowHouse.length;i++)
         {
             houseTemp+=60;
-            yellowHouse[i] = new Field(new Circle(25));
-            yellowHouse[i].getFieldShape().setCenterX(720+houseTemp);
-            yellowHouse[i].getFieldShape().setCenterY(420);
+            yellowHouse[i] = new Field();
+            yellowHouse[i].setCenterX(720+houseTemp);
+            yellowHouse[i].setCenterY(420);
             if(houseTemp==180)
             {
                 houseTemp=60;
             }
             if(i>1){
 
-                yellowHouse[i].getFieldShape().setCenterY(480);
-                yellowHouse[i].getFieldShape().setCenterX(720+houseTemp);
+                yellowHouse[i].setCenterY(480);
+                yellowHouse[i].setCenterX(720+houseTemp);
             }
-            pane.getChildren().add(yellowHouse[i].getFieldShape());
+            pane.getChildren().add(yellowHouse[i]);
             yellowHouse[i].setColor(Color.YELLOW);
         }
 
@@ -249,109 +346,40 @@ public class GUI extends Application {
         for (int i=0;i<greenHouse.length;i++)
         {
             houseTemp+=60;
-            greenHouse[i] = new Field(new Circle(25));
-            greenHouse[i].getFieldShape().setCenterX(720+houseTemp);
-            greenHouse[i].getFieldShape().setCenterY(600);
+            greenHouse[i] = new Field();
+            greenHouse[i].setCenterX(720+houseTemp);
+            greenHouse[i].setCenterY(600);
             if(houseTemp==180)
             {
                 houseTemp=60;
             }
             if(i>1){
-                greenHouse[i].getFieldShape().setCenterY(660);
-                greenHouse[i].getFieldShape().setCenterX(720+houseTemp);
+                greenHouse[i].setCenterY(660);
+                greenHouse[i].setCenterX(720+houseTemp);
             }
-            pane.getChildren().add(greenHouse[i].getFieldShape());
+            pane.getChildren().add(greenHouse[i]);
             greenHouse[i].setColor(Color.GREEN);
         }
-
-        int parkingTemp =0;
-        //Init redParking
-        for (int i = 0; i< redParking.length; i++)
-        {
-            parkingTemp +=60;
-            redParking[i] = new Field(new Circle(25));
-            redParking[i].getFieldShape().setCenterY(60+ parkingTemp);
-            redParking[i].getFieldShape().setCenterX(600);
-            redParking[i].setColor(Color.RED);
-            pane.getChildren().add(redParking[i].getFieldShape());
-        }
-
-
-        testButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                int dice = random.nextInt(6)+1;
-                System.out.println("Dice roll: "+dice);
-                if(currentPosition>0){
-                    arrayOfCircles[currentPosition].getFieldShape().setFill(Color.BLACK);
-                }
-                if(dice + currentPosition > 39){
-                    currentPosition =0;
-                }
-                else {
-                    arrayOfCircles[dice + currentPosition].getFieldShape().setFill(Color.RED);
-                    currentPosition += dice;
-                }
-            }
-        });
+    }
 
 
 
-        parkingTemp =0;
-        //Init blueParking
-        for (int i = 0; i< blueParking.length; i++)
-        {
-            parkingTemp +=60;
-            blueParking[i] = new Field(new Circle(25));
-            blueParking[i].getFieldShape().setCenterY(600);
-            blueParking[i].getFieldShape().setCenterX(660- parkingTemp);
-            blueParking[i].setColor(Color.BLUE);
-            pane.getChildren().add(blueParking[i].getFieldShape());
-        }
-
-        //Init greenParking
-        parkingTemp =0;
-        for (int i = 0; i< greenParking.length; i++)
-        {
-            parkingTemp +=60;
-            greenParking[i] = new Field(new Circle(25));
-            greenParking[i].getFieldShape().setCenterY(660- parkingTemp);
-            greenParking[i].getFieldShape().setCenterX(120);
-            greenParking[i].setColor(Color.GREEN);
-            pane.getChildren().add(greenParking[i].getFieldShape());
-        }
-
-        //Init yellowParking
-        parkingTemp =0;
-        for (int i = 0; i< yellowParking.length; i++)
-        {
-            parkingTemp +=60;
-            yellowParking[i] = new Field(new Circle(25));
-            yellowParking[i].getFieldShape().setCenterY(120);
-            yellowParking[i].getFieldShape().setCenterX(60+ parkingTemp);
-            yellowParking[i].setColor(Color.YELLOW);
-            pane.getChildren().add(yellowParking[i].getFieldShape());
-        }
-
-
-
-
-
-        pane.setMaxWidth(1200);
-        pane.setMaxHeight(900);
-
+    //Init field elements
+    public void initFields(Pane pane){
+        arrayOfCircles = new Field[40];
         for(int i=0;i<arrayOfCircles.length;i++){
-            arrayOfCircles[i] = new Field(new Circle(25));
+            arrayOfCircles[i] = new Field();
             if(i>=0 && i<11) {
-                arrayOfCircles[i].getFieldShape().setCenterX(60 + temp);
-                arrayOfCircles[i].getFieldShape().setCenterY(60);
+                arrayOfCircles[i].setCenterX(60 + temp);
+                arrayOfCircles[i].setCenterY(60);
                 temp+=60;
                 if(temp == 660){
                     temp = 60;
                 }
             }
             else if(i>=11 && i <21){
-                arrayOfCircles[i].getFieldShape().setCenterY(60+temp);
-                arrayOfCircles[i].getFieldShape().setCenterX(660);
+                arrayOfCircles[i].setCenterY(60+temp);
+                arrayOfCircles[i].setCenterX(660);
                 temp+=60;
                 if(temp==660)
                 {
@@ -360,8 +388,8 @@ public class GUI extends Application {
             }
             else if(i>=21 && i<31)
             {
-                arrayOfCircles[i].getFieldShape().setCenterX(660-temp);
-                arrayOfCircles[i].getFieldShape().setCenterY(660);
+                arrayOfCircles[i].setCenterX(660-temp);
+                arrayOfCircles[i].setCenterY(660);
                 temp+=60;
                 if(temp==660)
                 {
@@ -370,18 +398,12 @@ public class GUI extends Application {
             }
             else
             {
-                arrayOfCircles[i].getFieldShape().setCenterX(60);
-                arrayOfCircles[i].getFieldShape().setCenterY(660-temp);
+                arrayOfCircles[i].setCenterX(60);
+                arrayOfCircles[i].setCenterY(660-temp);
                 temp+=60;
             }
 
-            pane.getChildren().add(arrayOfCircles[i].getFieldShape());
+            pane.getChildren().add(arrayOfCircles[i]);
         }
-
-
-        primaryStage.show();
-        primaryStage.setScene(new Scene(pane));
-        primaryStage.setTitle("Ludo");
     }
-
 }
