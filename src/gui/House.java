@@ -5,14 +5,15 @@ import javafx.scene.paint.Color;
 /**
  * Created by Vlatacom on 17.3.2017..
  */
-public class  House {
+public class  House extends Figure {
     private int startPosition;
     private int endPosition;
     private Color defaultColor;
     private Color color;
     private Figure[] arrayOfFigures = new Figure[4];
 
-    public House(Color color) {
+    public House(Color c,int position,Color color) {
+        super(c,position);
         this.color = color;
 
         if(color.equals(Color.RED)){
