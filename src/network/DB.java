@@ -7,7 +7,7 @@ public class DB {
     private static final int MAX_CON = 4;
     private static final Connection[] bafer = new Connection[MAX_CON];
     private int first = 0, last = 0, free = MAX_CON;
-    private DB() { //za MySQL
+    private DB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             for (int i = 0; i < MAX_CON; i++) {
