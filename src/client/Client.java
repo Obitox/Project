@@ -23,7 +23,7 @@ import java.net.UnknownHostException;
 public class Client extends Application {
 
     private static final String HOST = "192.168.99.109";
-    private static final int PORT = 3306;
+    private static final int PORT = 9000;
 
     private static final String CLIENT_WINDOW_TITLE = "Client window";
     private static final double WINDOW_MIN_WIDTH = 700;
@@ -42,6 +42,8 @@ public class Client extends Application {
     private TextField usernameTextField;
     private PasswordField passwordField;
     private Button btnSignIn;
+
+    //
 
     public static void main(String[] args) {
         launch(args);

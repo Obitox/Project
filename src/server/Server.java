@@ -16,6 +16,9 @@ import java.net.SocketTimeoutException;
 
 public class Server extends Application implements Runnable{
 
+    //private static final String HOST = "192.168.99.109";
+    private static final int PORT = 9000;
+
     private static final String SERVER_WINDOW_TITLE = "Server window";
     private static final double SERVER_WINDOW_MIN_WIDTH = 700;
     private static final double SERVER_WINDOW_MIN_HEIGHT = 500;
@@ -26,8 +29,6 @@ public class Server extends Application implements Runnable{
     Stage serverWindow;
     Scene serverScene;
     Pane rootPane;
-
-    private static final int PORT = 9000;
 
     //private DbManager dbManager;
     ServerSocket serverSocket;
