@@ -19,9 +19,6 @@ public class GUI extends Application {
     private Pane pane;
     private Field[] arrayOfCircles;
     private Button testButton;
-    private int currentPosition=0;
-    private Random random = new Random();
-
 
     //Pane Init
     private GridPane redGridPane;
@@ -48,6 +45,9 @@ public class GUI extends Application {
     private Field[] yellowHouse;
     private Field[] greenHouse;
 
+    //TESTING BUTTON
+    int currentPosition=0;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -55,102 +55,10 @@ public class GUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        //Setting window size
         primaryStage.setWidth(1200);
         primaryStage.setHeight(900);
 
-
-        //RedButtonArray initSize
-        redButtons = new Button[2][2];
-
-        //RedGrid pane
-        redGridPane = new GridPane();
-
-
-        //RedButtonsArray Element init
-        int counterButton=0;
-        for (int i=0;i<redButtons.length;i++)
-        {
-            for (int j=0;j<redButtons.length;j++) {
-                counterButton++;
-                redButtons[i][j] = new Button(""+counterButton);
-                redGridPane.add(redButtons[i][j],j,i);
-            }
-        }
-
-        //Set position of RedGridPane
-        redGridPane.setLayoutX(900);
-        redGridPane.setLayoutY(60);
-
-        //BlueButtonArray initSize
-        blueButtons = new Button[2][2];
-
-        //BlueGrid pane
-        blueGridPane = new GridPane();
-
-
-        //BlueButtonsArray Element init
-        counterButton=0;
-        for (int i=0;i<blueButtons.length;i++)
-        {
-            for (int j=0;j<blueButtons.length;j++) {
-                counterButton++;
-                blueButtons[i][j] = new Button(""+counterButton);
-                blueGridPane.add(blueButtons[i][j],j,i);
-            }
-        }
-
-        //Set position of BlueGridPane
-        blueGridPane.setLayoutX(900);
-        blueGridPane.setLayoutY(250);
-
-
-
-        //YellowButtonArray initSize
-        yellowButtons = new Button[2][2];
-
-        //YellowGrid pane
-        yellowGridPane = new GridPane();
-
-
-        //YellowButtonArray Element init
-        counterButton=0;
-        for (int i=0;i<yellowButtons.length;i++)
-        {
-            for (int j=0;j<yellowButtons.length;j++) {
-                counterButton++;
-                yellowButtons[i][j] = new Button(""+counterButton);
-                yellowGridPane.add(yellowButtons[i][j],j,i);
-            }
-        }
-
-        //Set position of YellowGridPane
-        yellowGridPane.setLayoutX(900);
-        yellowGridPane.setLayoutY(430);
-
-
-
-
-        //GreenButtonArray initSize
-        greenButtons = new Button[2][2];
-
-        //GreenGrid pane
-        greenGridPane = new GridPane();
-
-
-        //GreenButtonArray Element init
-        counterButton=0;
-        for (int i=0;i<greenButtons.length;i++)
-        {
-            for (int j=0;j<greenButtons.length;j++) {
-                counterButton++;
-                greenButtons[i][j] = new Button(""+counterButton);
-                greenGridPane.add(greenButtons[i][j],j,i);
-            }
-        }
-
-        //Set position of GreenGridPane
-        greenGridPane.setLayoutX(900);
-        greenGridPane.setLayoutY(600);
 
         //Main Pane Init
         pane = new Pane();
@@ -164,37 +72,11 @@ public class GUI extends Application {
         //Calling initParkings
         initParkings(pane);
 
+        //Calling initButtons
+        initButtons(pane);
 
-
-        pane.getChildren().add(redGridPane);
-        pane.getChildren().add(blueGridPane);
-        pane.getChildren().add(greenGridPane);
-        pane.getChildren().add(yellowGridPane);
-
-
-        testButton = new Button("Move");
-
-        pane.getChildren().add(testButton);
-
-        testButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                int dice = random.nextInt(6)+1;
-                System.out.println("Dice roll: "+dice);
-                if(currentPosition>0){
-                    arrayOfCircles[currentPosition].setFill(Color.BLACK);
-                }
-                if(dice + currentPosition > 39){
-                    currentPosition =0;
-                }
-                else {
-                    arrayOfCircles[dice + currentPosition].setFill(Color.RED);
-                    currentPosition += dice;
-                }
-            }
-        });
-
-        pane.setMaxWidth(1200);
-        pane.setMaxHeight(900);
+        //Calling buttonTest ONLY MEANT FOR TESTING BUTTON CONTROL
+        buttonTest(pane);
 
         primaryStage.show();
         primaryStage.setScene(new Scene(pane));
@@ -405,5 +287,136 @@ public class GUI extends Application {
 
             pane.getChildren().add(arrayOfCircles[i]);
         }
+    }
+
+    //Init Buttons on GUI
+    public void initButtons(Pane pane){
+
+        //RedButtonArray initSize
+        redButtons = new Button[2][2];
+
+        //RedGrid pane
+        redGridPane = new GridPane();
+
+
+        //RedButtonsArray Element init
+        int counterButton=0;
+        for (int i=0;i<redButtons.length;i++)
+        {
+            for (int j=0;j<redButtons.length;j++) {
+                counterButton++;
+                redButtons[i][j] = new Button(""+counterButton);
+                redGridPane.add(redButtons[i][j],j,i);
+            }
+        }
+
+        //Set position of RedGridPane
+        redGridPane.setLayoutX(900);
+        redGridPane.setLayoutY(60);
+        pane.getChildren().add(redGridPane);
+
+        //BlueButtonArray initSize
+        blueButtons = new Button[2][2];
+
+        //BlueGrid pane
+        blueGridPane = new GridPane();
+
+
+        //BlueButtonsArray Element init
+        counterButton=0;
+        for (int i=0;i<blueButtons.length;i++)
+        {
+            for (int j=0;j<blueButtons.length;j++) {
+                counterButton++;
+                blueButtons[i][j] = new Button(""+counterButton);
+                blueGridPane.add(blueButtons[i][j],j,i);
+            }
+        }
+
+        //Set position of BlueGridPane
+        blueGridPane.setLayoutX(900);
+        blueGridPane.setLayoutY(250);
+        pane.getChildren().add(blueGridPane);
+
+
+
+        //YellowButtonArray initSize
+        yellowButtons = new Button[2][2];
+
+        //YellowGrid pane
+        yellowGridPane = new GridPane();
+
+
+        //YellowButtonArray Element init
+        counterButton=0;
+        for (int i=0;i<yellowButtons.length;i++)
+        {
+            for (int j=0;j<yellowButtons.length;j++) {
+                counterButton++;
+                yellowButtons[i][j] = new Button(""+counterButton);
+                yellowGridPane.add(yellowButtons[i][j],j,i);
+            }
+        }
+
+        //Set position of YellowGridPane
+        yellowGridPane.setLayoutX(900);
+        yellowGridPane.setLayoutY(430);
+        pane.getChildren().add(yellowGridPane);
+
+
+
+
+        //GreenButtonArray initSize
+        greenButtons = new Button[2][2];
+
+        //GreenGrid pane
+        greenGridPane = new GridPane();
+
+
+        //GreenButtonArray Element init
+        counterButton=0;
+        for (int i=0;i<greenButtons.length;i++)
+        {
+            for (int j=0;j<greenButtons.length;j++) {
+                counterButton++;
+                greenButtons[i][j] = new Button(""+counterButton);
+                greenGridPane.add(greenButtons[i][j],j,i);
+            }
+        }
+
+        //Set position of GreenGridPane
+        greenGridPane.setLayoutX(900);
+        greenGridPane.setLayoutY(600);
+        pane.getChildren().add(greenGridPane);
+
+    }
+
+
+    //TESTING BUTTON CONTROL
+    public void buttonTest(Pane pane){
+
+        Random random = new Random();
+
+        //TESTING
+        testButton = new Button("Move");
+
+        testButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                int dice = random.nextInt(6)+1;
+                System.out.println("Dice roll: "+dice);
+                if(currentPosition>0){
+                    arrayOfCircles[currentPosition].setFill(Color.BLACK);
+                }
+                if(dice + currentPosition > 39){
+                    currentPosition =0;
+                }
+                else {
+                    arrayOfCircles[dice + currentPosition].setFill(Color.RED);
+                    currentPosition += dice;
+                }
+            }
+        });
+
+        pane.getChildren().add(testButton);
     }
 }
