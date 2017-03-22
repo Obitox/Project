@@ -9,8 +9,6 @@ public class Field extends Circle {
 
     private int id = 0;
     private Color color;
-    private Circle  fieldShape;
-
 
     public Field(){
         id = counter++;
