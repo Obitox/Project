@@ -91,8 +91,8 @@ public class GUI extends Application {
             //boolean disabled = testButton.isDisabled();
         //    System.out.println(disabled);
        dice=table.diceRoll(playerTurn);
-        //playerTurn=(++playerTurn)%4;
-        //System.out.println("Next player is: "+playerTurn);
+        playerTurn=(++playerTurn)%4;
+        System.out.println("Next player is: "+playerTurn);
         });
 
     }

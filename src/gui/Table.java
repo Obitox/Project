@@ -114,7 +114,8 @@ public class Table extends Thread implements EventHandler {
         }
     }
 
-    public int diceRoll(int playerTurn)
+    /*
+   public int diceRoll(int playerTurn)
     {
         switch(playerTurn){
             case 0:
@@ -214,5 +215,40 @@ public class Table extends Thread implements EventHandler {
         }
         return 0;
 
+    }
+    */
+    public House getPlayerHouse(int playerTurn)
+    {
+        switch (playerTurn)
+        {
+            case 0: return yellowHouse;
+            case 1: return redHouse;
+            case 2: return blueHouse;
+            case 3: return greenHouse;
+            default: return null;
+        }
+    }
+    public int diceRoll(int playerTurn)
+    {
+        House tempHouse=this.getPlayerHouse(playerTurn);
+        if(tempHouse.playerInGame())
+        {
+            dice = random.nextInt(6)+1;
+            System.out.println("Dice roll: "+dice);
+            return dice;
+        }else
+            {
+                for (int i=0;i<3;i++)
+                {
+
+                    if((dice = random.nextInt(6)+1)==6)
+                    {
+                        System.out.println("Dice roll: "+dice);
+                        return dice;
+                    }
+                    else System.out.println("Dice roll: "+dice);
+                }
+                return 0;
+            }
     }
 }
