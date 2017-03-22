@@ -116,6 +116,13 @@ public class  House {
             }
         }
     }
+    public boolean playerInGame(){
+        for (int i=0;i<arrayOfFigures.length;i++){
+            if(arrayOfFigures[i].isAmIinGame()==true) return true;
+
+        }
+        return false;
+    }
 
 
 }

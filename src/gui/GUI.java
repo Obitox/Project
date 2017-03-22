@@ -34,7 +34,7 @@ public class GUI extends Application {
     private Table table;
 
     //Game sense
-    int playerTurn;
+    int playerTurn=0;
 
 
     //TESTING BUTTON
@@ -57,7 +57,7 @@ public class GUI extends Application {
         primaryStage.setHeight(900);
 
         //GAME SENSE
-        playerTurn = 0;
+        //playerTurn = 0;
 
         //Main Pane Init
         pane = new Pane();
@@ -87,9 +87,13 @@ public class GUI extends Application {
         //table.start();
         //testButton.setOnAction(table);
         testButton.setOnAction(e -> {
-            testButton.setDisable(true);
-            boolean disabled = testButton.isDisabled();
-            System.out.println(disabled);});
+            //testButton.setDisable(true);
+            //boolean disabled = testButton.isDisabled();
+        //    System.out.println(disabled);
+       dice=table.diceRoll(playerTurn);
+        //playerTurn=(++playerTurn)%4;
+        //System.out.println("Next player is: "+playerTurn);
+        });
 
     }
 

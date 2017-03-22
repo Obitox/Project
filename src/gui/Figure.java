@@ -10,6 +10,7 @@ public class Figure {
     private int id;
     private int position;
     private Color color;
+    private boolean amIinGame;
 
 
     public Figure(Color c, int position){
@@ -17,6 +18,7 @@ public class Figure {
         id = (counter++)%4+1;
         this.color = c;
         this.position = position;
+        amIinGame=false;
     }
 
     public int getId() {
@@ -36,5 +38,7 @@ public class Figure {
         return color;
     }
 
-
+    public boolean isAmIinGame() {
+        return amIinGame;
+    }
 }

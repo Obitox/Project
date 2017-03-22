@@ -113,4 +113,106 @@ public class Table extends Thread implements EventHandler {
 
         }
     }
+
+    public int diceRoll(int playerTurn)
+    {
+        switch(playerTurn){
+            case 0:
+                if(yellowHouse.playerInGame())
+                {
+                    dice = random.nextInt(6)+1;
+                    System.out.println("Dice roll: "+dice);
+                    return dice;
+
+                }
+                else
+                    {
+                        for (int i=0;i<3;i++)
+                        {
+
+                            if((dice = random.nextInt(6)+1)==6)
+                            {
+                                System.out.println("Dice roll: "+dice);
+                                return dice;
+                            }
+                            else System.out.println("Dice roll: "+dice);
+                        }
+                    }
+                break;
+            case 1:
+                if(redHouse.playerInGame())
+                {
+                    dice = random.nextInt(6)+1;
+                    System.out.println("Dice roll: "+dice);
+                    return dice;
+
+                }
+                else
+                {
+                    for (int i=0;i<3;i++)
+                    {
+
+                        if((dice = random.nextInt(6)+1)==6)
+                        {
+                            System.out.println("Dice roll: "+dice);
+                            return dice;
+                        }
+                        else System.out.println("Dice roll: "+dice);
+                    }
+                }
+                break;
+            case 2:
+                if(blueHouse.playerInGame())
+                {
+                    dice = random.nextInt(6)+1;
+                    System.out.println("Dice roll: "+dice);
+                    return dice;
+
+                }
+                else
+                {
+                    for (int i=0;i<3;i++)
+                    {
+
+                        if((dice = random.nextInt(6)+1)==6)
+                        {
+                            System.out.println("Dice roll: "+dice);
+                            return dice;
+                        }
+                        else System.out.println("Dice roll: "+dice);
+                    }
+                }
+                break;
+
+            case 3:
+                if(greenHouse.playerInGame())
+                {
+                    dice = random.nextInt(6)+1;
+                    System.out.println("Dice roll: "+dice);
+                    return dice;
+
+                }
+                else
+                {
+                    for (int i=0;i<3;i++)
+                    {
+
+                        if((dice = random.nextInt(6)+1)==6)
+                        {
+                            System.out.println("Dice roll: "+dice);
+                            return dice;
+                        }
+                        else System.out.println("Dice roll: "+dice);
+                    }
+                }
+                break;
+                default: return 0;
+
+
+
+
+        }
+        return 0;
+
+    }
 }
