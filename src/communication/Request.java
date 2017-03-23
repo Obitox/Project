@@ -1,38 +1,56 @@
 package communication;
 
+import client.Player;
+
 import java.io.Serializable;
 
 public class Request implements Serializable{
-    private boolean isLogIn;
-    private boolean isUpdated;
-
+    private String action;
     private Player player;
+    private Object object;
 
     public Request (){
 
     }
 
-    public boolean isLogIn() {
-        return isLogIn;
+    public Request (String action, Player player){
+        super();
+        this.action = action;
+        this.player = player;
     }
 
-    public boolean isUpdated() {
-        return isUpdated;
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public Player getPlayer() {
+
         return player;
     }
 
-    public void setLogIn(boolean logIn) {
-        isLogIn = logIn;
-    }
-
-    public void setUpdated(boolean updated) {
-        isUpdated = updated;
-    }
-
     public void setPlayer(Player player) {
+
         this.player = player;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "action='" + action + '\'' +
+                ", player=" + player +
+                ", object=" + object +
+                '}';
     }
 }

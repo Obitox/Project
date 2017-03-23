@@ -1,8 +1,11 @@
 package server;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import network.DB;
 
@@ -27,34 +30,30 @@ public class Server extends Application implements Runnable{
     private static final double SCENE_MIN_HEIGHT = 500;
 
     Stage serverWindow;
-    Scene serverScene;
     Pane rootPane;
+    Scene serverScene;
+
+    private Label lblRequestTitle;
+    private Label lblRequestPlayer;
+    private Label lblRequstAction;
+    private Label lblRequestObject;
+
+    private Label lblResponseTitle;
+    private Label lblResponsePlayer;
+    private Label lblResponseAction;
+    private Label lblResponseMessage;
+    private Label lblResponseObject;
 
     //private DbManager dbManager;
     ServerSocket serverSocket;
+
     public static void main(String[] args) {
         launch(args);
-
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        this.setUpServerWindow(primaryStage);
-
-        try {
-            //dbManager = new DbManager();
-            DB db = DB.getInstance();
-
-            serverSocket = new ServerSocket(PORT);
-        } catch (IOException e) {
-            System.out.println("Exception pri kreiranju Server socketa");
-            e.printStackTrace();
-        }
-
-    }
-
-    private void setUpServerWindow(Stage primaryStage){
         this.serverWindow = primaryStage;
         this.serverWindow.setTitle(SERVER_WINDOW_TITLE);
         this.serverWindow.setMinWidth(SERVER_WINDOW_MIN_WIDTH);
@@ -64,20 +63,42 @@ public class Server extends Application implements Runnable{
 
         this.serverWindow.setScene(serverScene);
         this.serverWindow.show();
-    }
 
+        try {
+            //dbManager = new DbManager();
+            //DB db = DB.getInstance();
+            serverSocket = new ServerSocket(PORT);
+        } catch (IOException e) {
+            System.out.println("Exception pri kreiranju Server socketa");
+            e.printStackTrace();
+        }
+    }
 
     private Scene createServerScene(){
-        addElements();
+        lblRequestTitle = new Label("REQUEST");
+        lblRequestPlayer = new Label("player");
+        lblRequstAction = new Label("action");
+        lblRequestObject = new Label("requestObject");
 
-        rootPane = new Pane();
-        serverScene = new Scene(rootPane, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
+        VBox vbRequest = new VBox(20);
+        vbRequest.setAlignment(Pos.CENTER);
+        vbRequest.getChildren().addAll(lblRequestTitle, lblRequestPlayer, lblRequstAction, lblRequestObject);
 
-        return serverScene;
-    }
+        lblResponseTitle = new Label("RESPONSE");
+        lblResponsePlayer = new Label("player");
+        lblResponseAction = new Label("action");
+        lblResponseMessage = new Label("message");
+        lblResponseObject = new Label("responseObject");
 
-    private void addElements(){
-        // TO DO
+        VBox vbResponse = new VBox(20);
+        vbResponse.setAlignment(Pos.CENTER);
+        vbResponse.getChildren().addAll(lblResponseTitle, lblResponsePlayer, lblResponseAction, lblResponseMessage, lblResponseObject);
+
+        VBox layoutServer = new VBox(20);
+        layoutServer.setAlignment(Pos.CENTER);
+        layoutServer.getChildren().addAll(vbRequest, vbResponse);
+
+        return new Scene(layoutServer, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
     }
 
     @Override
@@ -95,7 +116,7 @@ public class Server extends Application implements Runnable{
 //                Odgovor odgovor = null;
 //                if(zahtev.getAction().equals("getAllRooms")){
 //                    odgovor = new Odgovor();
-//                    odgovor.setSobe(dbManager.dohvatiSveSobe());
+//                    odgovor.setSobe(dbManager.getAllPlayers());
 //                    odgovor.setOdradjenaAkcija(zahtev.getAction());
 //                } else if(zahtev.getAction().equals("book")) {
 //                    odgovor = new Odgovor();

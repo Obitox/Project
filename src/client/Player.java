@@ -1,4 +1,4 @@
-package communication;
+package client;
 
 import javafx.scene.paint.Color;
 
@@ -16,6 +16,12 @@ public class Player {
         this.username = username;
         this.password = password;
         this.color = null;
+    }
+
+    public Player(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 
     public Player(int id, String username, String password, Color color){
@@ -55,5 +61,15 @@ public class Player {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", color=" + color +
+                '}';
     }
 }

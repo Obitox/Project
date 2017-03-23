@@ -1,4 +1,6 @@
 package client;
+import communication.Request;
+import communication.Response;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -7,9 +9,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import network.DB;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -22,7 +24,8 @@ import java.net.UnknownHostException;
 
 public class Client extends Application {
 
-    private static final String HOST = "192.168.99.109";
+    //private static final String HOST = "192.168.99.109";
+    private static final String HOST = "127.0.0.1";
     private static final int PORT = 9000;
 
     private static final String CLIENT_WINDOW_TITLE = "Client window";
@@ -35,19 +38,28 @@ public class Client extends Application {
 
 
     Stage window;
-    Scene logInScene, playingScene;
     Pane rootPaneLogIn, rootPanePlayingScene;
 
+    Scene logInScene;
     private Label messageLabel;
     private TextField usernameTextField;
     private PasswordField passwordField;
     private Button btnSignIn;
+
+    Scene playingScene;
+    private Label sceneTitle = new Label("Playing scene");
+    private Label lblPlayer = new Label("player");
+    private Label lblDoneAction = new Label("doneAction");
+    private Label lblMessage = new Label("message");
+    private Button btnSignOut = new Button("Sign out");
 
     //
 
     public static void main(String[] args) {
         launch(args);
     }
+
+    //
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -59,7 +71,8 @@ public class Client extends Application {
         this.logInScene = createLogInScene();
         this.playingScene = createPlayingScene();
 
-        this.window.setScene(logInScene);
+        //this.window.setScene(logInScene);
+        this.window.setScene(playingScene);
         this.window.show();
     }
 
@@ -103,57 +116,78 @@ public class Client extends Application {
         //button
         btnSignIn = new Button("Sign in");
         btnSignIn.setOnAction(event -> {
-            sendLogInRequest();
+            onSignIn();
         });
         grid.add(btnSignIn, 1, 4);
 
         return new Scene(grid, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
     }
 
-    private void sendLogInRequest(){
+    private void onSignIn(){
         String username = usernameTextField.getText();
         String password = passwordField.getText();
 
+        // kreiramo moguceg igraca
+        Player player = new Player(username, password);
         // kreiramo obj request
+        Request request = new Request("logIn", player);
 
-        if(checkUsernamePassword(username, password)){
-            messageLabel.setText("");
-            usernameTextField.setText("");
-            passwordField.setText("");
-            window.setScene(playingScene);
-        } else {
-            window.setScene(logInScene);
-            messageLabel.setText("Neispravan unos!");
-        }
+
+//        if(checkUsernamePassword(username, password)){
+//            messageLabel.setText("");
+//            usernameTextField.setText("");
+//            passwordField.setText("");
+//            window.setScene(playingScene);
+//        } else {
+//            window.setScene(logInScene);
+//            messageLabel.setText("Neispravan unos!");
+//        }
 
         try {
             Socket clientSocket = new Socket(HOST, PORT);
+
             OutputStream outToServer = clientSocket.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(outToServer);
-//            oos.writeObject(new Zahtev("book", id, owner, date));
-//            oos.flush();
-//
-//            InputStream inFromServer = clientSocket.getInputStream();
-//            ObjectInputStream ois = new ObjectInputStream(inFromServer);
-//
-//            Odgovor odgovor = (Odgovor) ois.readObject();
-//            if(odgovor.getOdradjenaAkcija() != null && odgovor.getOdradjenaAkcija().equals("book")){
-//                getMessageLabel().setText("Booking is successful");
-//                refreshTableContent(selectedRowIndex, owner, date);
-//            } else {
-//                getMessageLabel().setText("Booking is not successful! " + odgovor.getMessage() + " Prikazi sve sobe ponovo.");
-//            }
-//            clearAllDisplayBookingTextFields();
-//            getBookButton().setEnabled(false);
-//            getCancelBookingButton().setEnabled(false);
+            oos.writeObject(request);
+            oos.flush();
 
+            InputStream inFromServer = clientSocket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(inFromServer);
+
+            Response response = (Response) ois.readObject();
+            player = response.getPlayer();
+            String doneAction = response.getDoneAction();
+            String message = response.getMessage();
+
+            if(response.getDoneAction() != null && response.getDoneAction().equals("login")){
+                clearAllLogInFields();
+                setUpPlayingScene(player,doneAction, message);
+                window.setScene(playingScene);
+            } else {
+                clearAllLogInFields();
+                messageLabel.setText("Log in is not successful! " + response.getMessage());
+                window.setScene(logInScene);
+            }
             clientSocket.close();
+
         } catch (UnknownHostException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
             e1.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+    }
 
+    private void setUpPlayingScene(Player player, String doneAction, String message){
+        lblPlayer.setText(player.toString());
+        lblDoneAction.setText(doneAction);
+        lblMessage.setText(message);
+    }
+
+    private void clearAllLogInFields(){
+        usernameTextField.setText("");
+        passwordField.setText("");
     }
     
     private boolean checkUsernamePassword(String username, String password){
@@ -168,16 +202,28 @@ public class Client extends Application {
 
     private Scene createPlayingScene(){
         //elementi scene2
-        Label label2 = new Label("Playing scene");
-        Button button2 = new Button("Sign out");
-        button2.setOnAction(event -> {
-            window.setScene(logInScene);
+//        sceneTitle = new Label("Playing scene");
+        sceneTitle = new Label("Playing scene");
+        sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+
+        lblPlayer = new Label("player");
+        lblDoneAction = new Label("doneAction");
+        lblMessage = new Label("message");
+
+        btnSignOut = new Button("Sign out");
+        btnSignOut.setOnAction(event -> {
+            onSignOut();
         });
 
         //layout2 scene2
-        HBox layout2 = new HBox(20);
-        layout2.getChildren().addAll(label2, button2);
+        VBox layout2 = new VBox(20);
+        layout2.setAlignment(Pos.CENTER);
+        layout2.getChildren().addAll(sceneTitle, lblPlayer, lblDoneAction, lblMessage, btnSignOut);
         return new Scene (layout2, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
+    }
+
+    private void onSignOut(){
+        window.setScene(logInScene);
     }
 
     
