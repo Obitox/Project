@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbManager {
+    private DB db;
 
     public DbManager(){
+        this.db = DB.getInstanca();
     }
 
     public List<Player> getAllPlayers(){
-        DB db = DB.getInstanca();
 
         String sql= "SELECT * "+
                     "FROM players ";
@@ -24,7 +25,7 @@ public class DbManager {
             while(rs.next()){
                 int id = rs.getInt("id");
                 String username = rs.getString("username");
-                String password = rs.getString("pass");
+                String password = rs.getString("password");
 
                 Player player = new Player (id, username, password);
 
@@ -37,9 +38,27 @@ public class DbManager {
         return players;
     }
 
+    public Player getPlayer(String username, String password){
+        Player player = null;
+        String sql= "SELECT * " +
+                    "FROM players  " +
+                    "WHERE username= '"+ username +"' AND password= '"+ password +"'";
+        ResultSet rs = db.selectUpit(sql);
+        try{
+            if(rs.next()){
+                int id = rs.getInt("id");
+
+                player = new Player (id, username, password);
+            }
+        } catch(SQLException e){
+            System.out.println("Exception prilikom dohvatanja Igraca!");
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return player;
+    }
+
     public Player selectPlayer(int id){
         Player player = null;
-        DB db = DB.getInstanca();
         String sql= "SELECT * " +
                     "FROM players  " +
                     "WHERE id=" + id;
@@ -47,7 +66,7 @@ public class DbManager {
         try{
             if(rs.next()){
                 String username = rs.getString("username");
-                String password = rs.getString("pass");
+                String password = rs.getString("password");
 
                 player = new Player (id, username, password);
             }

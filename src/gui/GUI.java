@@ -54,7 +54,8 @@ public class GUI extends Application {
 
         //Setting window size
         primaryStage.setWidth(1200);
-        primaryStage.setHeight(900);
+        //primaryStage.setHeight(900);
+        primaryStage.setHeight(700);
 
         //GAME SENSE
         //playerTurn = 0;

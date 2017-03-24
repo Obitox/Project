@@ -2,7 +2,9 @@ package client;
 
 import javafx.scene.paint.Color;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private int id;
     private String username;
     private String password;

@@ -71,8 +71,8 @@ public class Client extends Application {
         this.logInScene = createLogInScene();
         this.playingScene = createPlayingScene();
 
-        //this.window.setScene(logInScene);
-        this.window.setScene(playingScene);
+        this.window.setScene(logInScene);
+        //this.window.setScene(playingScene);
         this.window.show();
     }
 
@@ -130,8 +130,7 @@ public class Client extends Application {
         // kreiramo moguceg igraca
         Player player = new Player(username, password);
         // kreiramo obj request
-        Request request = new Request("logIn", player);
-
+        Request request = new Request("signIn", player);
 
 //        if(checkUsernamePassword(username, password)){
 //            messageLabel.setText("");
@@ -150,26 +149,34 @@ public class Client extends Application {
             ObjectOutputStream oos = new ObjectOutputStream(outToServer);
             oos.writeObject(request);
             oos.flush();
+            System.out.println("Poslat zahtev: " + request);
 
             InputStream inFromServer = clientSocket.getInputStream();
             ObjectInputStream ois = new ObjectInputStream(inFromServer);
 
             Response response = (Response) ois.readObject();
+            clientSocket.close();
+            System.out.println("Primljen odgovor: "+response);
+
             player = response.getPlayer();
             String doneAction = response.getDoneAction();
             String message = response.getMessage();
 
-            if(response.getDoneAction() != null && response.getDoneAction().equals("login")){
+            if(response.getDoneAction().equals("signIn")){
                 clearAllLogInFields();
                 setUpPlayingScene(player,doneAction, message);
                 window.setScene(playingScene);
-            } else {
+            } else if(response.getDoneAction().equals("refreshTable")){
+                clearAllLogInFields();
+                // TO DO
+            } else if(response.getDoneAction().equals("myMove")){
+                clearAllLogInFields();
+                // TO DO
+            }else {
                 clearAllLogInFields();
                 messageLabel.setText("Log in is not successful! " + response.getMessage());
                 window.setScene(logInScene);
             }
-            clientSocket.close();
-
         } catch (UnknownHostException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
@@ -180,7 +187,7 @@ public class Client extends Application {
     }
 
     private void setUpPlayingScene(Player player, String doneAction, String message){
-        lblPlayer.setText(player.toString());
+        lblPlayer.setText(String.valueOf(player));
         lblDoneAction.setText(doneAction);
         lblMessage.setText(message);
     }
@@ -223,8 +230,8 @@ public class Client extends Application {
     }
 
     private void onSignOut(){
+        messageLabel.setText("Successugul sign out");
         window.setScene(logInScene);
     }
 
-    
 }

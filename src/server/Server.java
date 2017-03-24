@@ -1,13 +1,17 @@
 package server;
 
+import client.Player;
+import communication.Request;
+import communication.Response;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import network.DB;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,9 +19,10 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.List;
 
 
-public class Server extends Application implements Runnable{
+public class Server extends Application{
 
     //private static final String HOST = "192.168.99.109";
     private static final int PORT = 9000;
@@ -33,19 +38,17 @@ public class Server extends Application implements Runnable{
     Pane rootPane;
     Scene serverScene;
 
-    private Label lblRequestTitle;
-    private Label lblRequestPlayer;
-    private Label lblRequstAction;
-    private Label lblRequestObject;
+    private Button btnTurnOn;
+    private Button btnTurnOff;
 
-    private Label lblResponseTitle;
-    private Label lblResponsePlayer;
-    private Label lblResponseAction;
-    private Label lblResponseMessage;
-    private Label lblResponseObject;
+    private ServerRunnable sr;
 
-    //private DbManager dbManager;
-    ServerSocket serverSocket;
+    private DbManager dbManager;
+    private ServerSocket serverSocket;
+    private List<Player> players;
+
+    private static final Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
+    private static int numberOfSignInPlayers = 0;
 
     public static void main(String[] args) {
         launch(args);
@@ -63,99 +66,28 @@ public class Server extends Application implements Runnable{
 
         this.serverWindow.setScene(serverScene);
         this.serverWindow.show();
-
-        try {
-            //dbManager = new DbManager();
-            //DB db = DB.getInstance();
-            serverSocket = new ServerSocket(PORT);
-        } catch (IOException e) {
-            System.out.println("Exception pri kreiranju Server socketa");
-            e.printStackTrace();
-        }
     }
 
     private Scene createServerScene(){
-        lblRequestTitle = new Label("REQUEST");
-        lblRequestPlayer = new Label("player");
-        lblRequstAction = new Label("action");
-        lblRequestObject = new Label("requestObject");
-
-        VBox vbRequest = new VBox(20);
-        vbRequest.setAlignment(Pos.CENTER);
-        vbRequest.getChildren().addAll(lblRequestTitle, lblRequestPlayer, lblRequstAction, lblRequestObject);
-
-        lblResponseTitle = new Label("RESPONSE");
-        lblResponsePlayer = new Label("player");
-        lblResponseAction = new Label("action");
-        lblResponseMessage = new Label("message");
-        lblResponseObject = new Label("responseObject");
-
-        VBox vbResponse = new VBox(20);
-        vbResponse.setAlignment(Pos.CENTER);
-        vbResponse.getChildren().addAll(lblResponseTitle, lblResponsePlayer, lblResponseAction, lblResponseMessage, lblResponseObject);
+        btnTurnOn = new Button("TURN ON");
+        btnTurnOn.setOnAction(event -> onTurnOn());
+        btnTurnOff = new Button("TURN OFF");
+        btnTurnOff.setOnAction(event -> onTurnOff());
 
         VBox layoutServer = new VBox(20);
         layoutServer.setAlignment(Pos.CENTER);
-        layoutServer.getChildren().addAll(vbRequest, vbResponse);
+        layoutServer.getChildren().addAll(btnTurnOn, btnTurnOff);
 
         return new Scene(layoutServer, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                Socket server = serverSocket.accept();
-
-                System.out.println("Zahtev prihvacen sa: " + server.getRemoteSocketAddress());
-
-                ObjectInputStream ois = new ObjectInputStream(server.getInputStream());
-//                Zahtev zahtev = (Zahtev) ois.readObject();
-//                getMessageLabel().setText(DisplayMessagesServer.PRIMANJE + zahtev.toString());
-//
-//                Odgovor odgovor = null;
-//                if(zahtev.getAction().equals("getAllRooms")){
-//                    odgovor = new Odgovor();
-//                    odgovor.setSobe(dbManager.getAllPlayers());
-//                    odgovor.setOdradjenaAkcija(zahtev.getAction());
-//                } else if(zahtev.getAction().equals("book")) {
-//                    odgovor = new Odgovor();
-//                    int id = zahtev.getId();
-//                    String owner = zahtev.getOwner();
-//                    String date  = zahtev.getDate();
-//                    try{
-//                        dbManager.book(id, owner, date);
-//                        odgovor.setOdradjenaAkcija("book");
-//                    } catch(BookingException be){
-//                        odgovor.setMessage(be.getMessage());
-//                    }
-//                } else if(zahtev.getAction().equals("cancelBooking")) {
-//                    odgovor = new Odgovor();
-//                    int id = zahtev.getId();
-//                    try{
-//                        dbManager.cancelBooking(id);
-//                        odgovor.setOdradjenaAkcija("cancelBooking");
-//                    } catch(CancelBookingException cbe){
-//                        odgovor.setMessage(cbe.getMessage());
-//                    }
-//                }
-
-                ObjectOutputStream oos = new ObjectOutputStream(server.getOutputStream());
-//                oos.writeObject(odgovor);
-//                getOutputMessageLabel().setText(DisplayMessagesServer.USPESNO + odgovor.toString());
-                oos.flush();
-
-                server.close();
-            } catch (SocketTimeoutException s) {
-                System.out.println("Socket timed out!");
-                break;
-            } catch (IOException e) {
-                System.out.println("IOException Server obrada zahteva");
-                e.printStackTrace();
-                break;
-//            } catch (ClassNotFoundException e) {
-//                e.printStackTrace();
-            }
-        }
+    private void onTurnOn(){
+        sr = new ServerRunnable();
+        Thread t = new Thread(sr);
     }
+
+    private void onTurnOff(){
+        sr.stopThread();
+    }
+
 }

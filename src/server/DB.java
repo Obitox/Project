@@ -14,8 +14,8 @@ public class DB {
     private DB(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/booking_baza","root","");
-            System.out.println("Konekcija je uspela!");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/vlatacom_baza","root","");
+            System.out.println("Uspesna konekcija!");
         }catch(Exception e){
             System.out.println("Neuspesna konekcija!");
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
