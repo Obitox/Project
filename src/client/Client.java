@@ -24,8 +24,8 @@ import java.net.UnknownHostException;
 
 public class Client extends Application {
 
-    //private static final String HOST = "192.168.99.109";
-    private static final String HOST = "127.0.0.1";
+    private static final String HOST = "192.168.99.109";
+    //private static final String HOST = "127.0.0.1";
     private static final int PORT = 9000;
 
     private static final String CLIENT_WINDOW_TITLE = "Client window";
