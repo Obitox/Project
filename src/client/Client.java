@@ -1,6 +1,7 @@
 package client;
 import communication.Request;
 import communication.Response;
+import gui.Table;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -53,9 +54,13 @@ public class Client extends Application {
     private Label lblMessage = new Label("message");
     private Button btnSignOut = new Button("Sign out");
 
+    private Player player = null;
+    private Object table = null;
+
     //
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
@@ -123,90 +128,6 @@ public class Client extends Application {
         return new Scene(grid, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
     }
 
-    private void onSignIn(){
-        String username = usernameTextField.getText();
-        String password = passwordField.getText();
-
-        // kreiramo moguceg igraca
-        Player player = new Player(username, password);
-        // kreiramo obj request
-        Request request = new Request("signIn", player);
-
-//        if(checkUsernamePassword(username, password)){
-//            messageLabel.setText("");
-//            usernameTextField.setText("");
-//            passwordField.setText("");
-//            window.setScene(playingScene);
-//        } else {
-//            window.setScene(logInScene);
-//            messageLabel.setText("Neispravan unos!");
-//        }
-
-        try {
-            Socket clientSocket = new Socket(HOST, PORT);
-
-            OutputStream outToServer = clientSocket.getOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
-            oos.writeObject(request);
-            oos.flush();
-            System.out.println("Poslat zahtev: " + request);
-
-            InputStream inFromServer = clientSocket.getInputStream();
-            ObjectInputStream ois = new ObjectInputStream(inFromServer);
-
-            Response response = (Response) ois.readObject();
-            clientSocket.close();
-            System.out.println("Primljen odgovor: "+response);
-
-            player = response.getPlayer();
-            String doneAction = response.getDoneAction();
-            String message = response.getMessage();
-
-            if(response.getDoneAction().equals("signIn")){
-                clearAllLogInFields();
-                setUpPlayingScene(player,doneAction, message);
-                window.setScene(playingScene);
-            } else if(response.getDoneAction().equals("refreshTable")){
-                clearAllLogInFields();
-                // TO DO
-            } else if(response.getDoneAction().equals("myMove")){
-                clearAllLogInFields();
-                // TO DO
-            }else {
-                clearAllLogInFields();
-                messageLabel.setText("Log in is not successful! " + response.getMessage());
-                window.setScene(logInScene);
-            }
-        } catch (UnknownHostException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void setUpPlayingScene(Player player, String doneAction, String message){
-        lblPlayer.setText(String.valueOf(player));
-        lblDoneAction.setText(doneAction);
-        lblMessage.setText(message);
-    }
-
-    private void clearAllLogInFields(){
-        usernameTextField.setText("");
-        passwordField.setText("");
-    }
-    
-    private boolean checkUsernamePassword(String username, String password){
-
-        //TO DO Dohvatanje passward-a za dati username
-
-        if(username.equals("pera.peric" )&& password.equals("password1")){
-            return true;
-        }
-        return false;
-    }
-
     private Scene createPlayingScene(){
         //elementi scene2
 //        sceneTitle = new Label("Playing scene");
@@ -229,9 +150,134 @@ public class Client extends Application {
         return new Scene (layout2, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
     }
 
-    private void onSignOut(){
-        messageLabel.setText("Successugul sign out");
-        window.setScene(logInScene);
+    private void clearAllLogInFields(){
+        usernameTextField.setText("");
+        passwordField.setText("");
     }
+
+    private boolean checkUsernamePassword(String username, String password){
+
+        //TO DO Provera username-a i password-a
+
+        if(username.equals("pera.peric" )&& password.equals("password1")){
+            return true;
+        }
+        return false;
+    }
+
+    private void onSignIn(){
+        String username = usernameTextField.getText();
+        String password = passwordField.getText();
+
+//        if(checkUsernamePassword(username, password)){
+//            messageLabel.setText("");
+//            usernameTextField.setText("");
+//            passwordField.setText("");
+//            window.setScene(playingScene);
+//        } else {
+//            window.setScene(logInScene);
+//            messageLabel.setText("Neispravan unos!");
+//        }
+
+        // kreiramo moguceg igraca
+        Player player = new Player(username, password);
+        // kreiramo obj request
+        Request request = new Request("signIn", player);
+
+        try {
+            Socket clientSocket = new Socket(HOST, PORT);
+
+            OutputStream outToServer = clientSocket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
+            oos.writeObject(request);
+            oos.flush();
+            System.out.println("Poslat zahtev: " + request);
+
+            InputStream inFromServer = clientSocket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(inFromServer);
+
+            Response response = (Response) ois.readObject();
+            clientSocket.close();
+            System.out.println("Primljen odgovor: " + response);
+
+            this.doOnResponse(response);
+
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void onSignOut(){
+
+        // kreiramo obj request
+        Request request = new Request("signOut", player);
+
+        try {
+            Socket clientSocket = new Socket(HOST, PORT);
+
+            OutputStream outToServer = clientSocket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
+            oos.writeObject(request);
+            oos.flush();
+            System.out.println("Poslat zahtev: " + request);
+
+            InputStream inFromServer = clientSocket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(inFromServer);
+
+            Response response = (Response) ois.readObject();
+            clientSocket.close();
+            System.out.println("Primljen odgovor: "+response);
+
+            this.doOnResponse(response);
+
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+//
+//        messageLabel.setText("Successugul sign out");
+//        window.setScene(logInScene);
+    }
+
+    private void doOnResponse (Response response){
+        player = response.getPlayer();
+        String doneAction = response.getDoneAction();
+        String message = response.getMessage();
+
+        if(response.getDoneAction().equals("signIn")){
+            clearAllLogInFields();
+            setUpPlayingScene(player,doneAction, message);
+            window.setScene(playingScene);
+        } else if(response.getDoneAction().equals("signOut")){
+            clearAllLogInFields();
+            messageLabel.setText(response.getMessage());
+            window.setScene(logInScene);
+        }else if(response.getDoneAction().equals("refreshTable")){
+            clearAllLogInFields();
+            table = response.getObject();
+            // TO DO
+        } else if(response.getDoneAction().equals("myMove")){
+            clearAllLogInFields();
+            // TO DO
+        } else {
+            clearAllLogInFields();
+            messageLabel.setText("Sign in is not successful! " + response.getMessage());
+            window.setScene(logInScene);
+        }
+    }
+
+    private void setUpPlayingScene(Player player, String doneAction, String message){
+        lblPlayer.setText(String.valueOf(player));
+        lblDoneAction.setText(doneAction);
+        lblMessage.setText(message);
+    }
+
 
 }
