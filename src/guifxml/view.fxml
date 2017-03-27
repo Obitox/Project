@@ -1,153 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 
 <StackPane fx:id="stackPane" prefHeight="531.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guifxml.Controller">
    <children>
-      <GridPane fx:id="GridOFAllElements">
-        <columnConstraints>
-          <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-          <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="15.0" prefWidth="30.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-        </rowConstraints>
+       <!-- PANE of 40 Fields -->
+      <Pane fx:id="PaneOfFields" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Circle id="1" fx:id="x1" fill="black" radius="13.0" stroke="BLACK" strokeType="INSIDE"/>
-            <Circle id="2" fx:id="x2" fill="black" layoutX="28.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" />
-            <Circle id="3" fx:id="x3" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
-            <Circle id="4" fx:id="x4" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" />
-            <Circle id="5" fx:id="x5" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" />
-            <Circle id="6" fx:id="x6" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" />
-            <Circle id="7" fx:id="x7" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" />
-            <Circle id="8" fx:id="x8" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" />
-            <Circle id="9" fx:id="x9" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" />
-            <Circle id="10" fx:id="x10" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" />
-            <Circle id="11" fx:id="x11" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" />
-            <Circle id="12" fx:id="x12" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-            <Circle id="13" fx:id="x13" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="2" />
-            <Circle id="14" fx:id="x14" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-            <Circle id="15" fx:id="x15" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="4" />
-            <Circle id="16" fx:id="x16" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="5" />
-            <Circle id="17" fx:id="x17" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="6" />
-            <Circle id="18" fx:id="x18" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="7" />
-            <Circle id="19" fx:id="x19" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="8" />
-            <Circle id="20" fx:id="x20" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="9" />
-            <Circle id="21" fx:id="x21" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="10" GridPane.rowIndex="10" />
-            <Circle id="22" fx:id="x22" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="1" />
-            <Circle id="23" fx:id="x23" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="2" />
-            <Circle id="24" fx:id="x24" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="3" />
-            <Circle id="25" fx:id="x25" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="4" />
-            <Circle id="26" fx:id="x26" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="5" />
-            <Circle id="27" fx:id="x27" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="6" />
-            <Circle id="28" fx:id="x28" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="7" />
-            <Circle id="29" fx:id="x29" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="8" />
-            <Circle id="30" fx:id="x30" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="9" />
-            <Circle id="31" fx:id="x31" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.rowIndex="10" />
-            <Circle id="32" fx:id="x32" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Circle id="33" fx:id="x33" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-            <Circle id="34" fx:id="x34" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="10" />
-            <Circle id="35" fx:id="x35" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-            <Circle id="36" fx:id="x36" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.rowIndex="10" />
-            <Circle id="37" fx:id="x37" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="10" />
-            <Circle id="38" fx:id="x38" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="10" />
-            <Circle id="39" fx:id="x39" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="10" />
-            <Circle id="40" fx:id="x40" fill="black" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="10" />
-            <Circle fx:id="x41" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Circle fx:id="x42" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-            <Circle fx:id="x43" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-            <Circle fx:id="x44" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-            <Circle fx:id="x45" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="4" />
-            <Circle fx:id="x46" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Circle fx:id="x47" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Circle fx:id="x48" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Circle fx:id="x49" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="9" GridPane.rowIndex="9" />
-            <Circle fx:id="x50" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="8" GridPane.rowIndex="9" />
-            <Circle fx:id="x51" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="7" GridPane.rowIndex="9" />
-            <Circle fx:id="x52" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.rowIndex="9" />
-            <Circle fx:id="x53" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Circle fx:id="x54" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Circle fx:id="x55" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Circle fx:id="x56" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Circle fx:id="x57" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" />
-            <Circle fx:id="x58" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" />
-            <Circle fx:id="x59" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" GridPane.rowIndex="1" />
-            <Circle fx:id="x60" fill="#fbff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" GridPane.rowIndex="1" />
-            <Circle fx:id="x61" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" GridPane.rowIndex="3" />
-            <Circle fx:id="x62" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" GridPane.rowIndex="3" />
-            <Circle fx:id="x63" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" GridPane.rowIndex="4" />
-            <Circle fx:id="x64" fill="RED" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" GridPane.rowIndex="4" />
-            <Circle fx:id="x65" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" GridPane.rowIndex="6" />
-            <Circle fx:id="x66" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" GridPane.rowIndex="6" />
-            <Circle fx:id="x67" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" GridPane.rowIndex="7" />
-            <Circle fx:id="x68" fill="#0009ff" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" GridPane.rowIndex="7" />
-            <Circle fx:id="x69" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" GridPane.rowIndex="9" />
-            <Circle fx:id="x70" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" GridPane.rowIndex="9" />
-            <Circle fx:id="x71" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="12" GridPane.rowIndex="10" />
-            <Circle fx:id="x72" fill="#2fff00" layoutX="23.0" layoutY="23.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="13" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="1" GridPane.columnIndex="14" />
-            <Button fx:id="Button1" onAction="#handleButtonAction" layoutX="430.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="2" GridPane.columnIndex="15" />
-            <Button layoutX="430.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="3" GridPane.columnIndex="14" GridPane.rowIndex="1" />
-            <Button layoutX="430.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="4" GridPane.columnIndex="15" GridPane.rowIndex="1" />
-            <Button layoutX="430.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="1" GridPane.columnIndex="15" GridPane.rowIndex="4" />
-            <Button layoutX="460.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="2" GridPane.columnIndex="15" GridPane.rowIndex="4" />
-            <Button layoutX="430.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="3" GridPane.columnIndex="15" GridPane.rowIndex="4" />
-            <Button layoutX="460.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="4" GridPane.columnIndex="15" GridPane.rowIndex="4" />
-            <Button layoutX="430.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="1" GridPane.columnIndex="14" GridPane.rowIndex="3" />
-            <Button layoutX="460.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="2" GridPane.columnIndex="15" GridPane.rowIndex="3" />
-            <Button layoutX="430.0" layoutY="37.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="3" GridPane.columnIndex="14" GridPane.rowIndex="4" />
-            <Button layoutX="430.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="1" GridPane.columnIndex="14" GridPane.rowIndex="6" />
-            <Button layoutX="430.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="2" GridPane.columnIndex="15" GridPane.rowIndex="6" />
-            <Button layoutX="430.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="3" GridPane.columnIndex="14" GridPane.rowIndex="7" />
-            <Button layoutX="460.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="4" GridPane.columnIndex="15" GridPane.rowIndex="7" />
-            <Button layoutX="430.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="1" GridPane.columnIndex="14" GridPane.rowIndex="9" />
-            <Button layoutX="460.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="2" GridPane.columnIndex="15" GridPane.rowIndex="9" />
-            <Button layoutX="430.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="3" GridPane.columnIndex="14" GridPane.rowIndex="10" />
-            <Button layoutX="430.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="47.0" text="4" GridPane.columnIndex="15" GridPane.rowIndex="10" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="146.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="177.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="209.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="241.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="275.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="311.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="342.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="373.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="406.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="125.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="161.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="192.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="223.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="254.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="285.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="318.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="349.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="438.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="406.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="373.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="342.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="311.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="275.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="241.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="209.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="177.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="146.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="381.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="349.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="318.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="285.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="254.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="223.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="192.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="161.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="125.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="BLACK" layoutX="116.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
-      </GridPane>
+      </Pane>
+       <Pane>
+           <Button fx:id="btnTest" onAction="#Clicked">
+           </Button>
+       </Pane>
+       <!-- PANE of 4 Red Parkings -->
+       <Pane fx:id="PaneOfRedParkings">
+           <Circle fill="RED" layoutX="146.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="RED" layoutX="176.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="RED" layoutX="206.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="RED" layoutX="236.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Blue Parkings -->
+       <Pane fx:id="PaneOfBlueParkings">
+           <Circle fill="BLUE" layoutX="405.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="BLUE" layoutX="405.0" layoutY="118.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="BLUE" layoutX="405.0" layoutY="148.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="BLUE" layoutX="405.0" layoutY="178.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Yellow Parkings -->
+       <Pane fx:id="PaneOfYellowParkings">
+           <Circle fill="YELLOW" layoutX="406.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="YELLOW" layoutX="373.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="YELLOW" layoutX="342.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="YELLOW" layoutX="311.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Green Parkings -->
+       <Pane fx:id="PaneOfGreenParkings">
+           <Circle fill="GREEN" layoutX="146.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="GREEN" layoutX="146.0" layoutY="320.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="GREEN" layoutX="146.0" layoutY="290.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="GREEN" layoutX="146.0" layoutY="260.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Red Houses -->
+       <Pane fx:id="PaneOfRedHouses">
+           <Circle fill="RED" layoutX="520.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="RED" layoutX="550.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="RED" layoutX="580.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="RED" layoutX="610.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Blue Houses -->
+       <Pane fx:id="PaneOfBlueHouses">
+           <Circle fill="BLUE" layoutX="520.0" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="BLUE" layoutX="550" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="BLUE" layoutX="580.0" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="BLUE" layoutX="610.0" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Yellow Houses -->
+       <Pane fx:id="PaneOfYellowHouses">
+           <Circle fill="YELLOW" layoutX="520.0" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="YELLOW" layoutX="550" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="YELLOW" layoutX="580.0" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="YELLOW" layoutX="610.0" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Green Houses -->
+       <Pane fx:id="PaneOfGreenHouses">
+           <Circle fill="GREEN" layoutX="520.0" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="GREEN" layoutX="550" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="GREEN" layoutX="580.0" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+           <Circle fill="GREEN" layoutX="610.0" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+       </Pane>
+       <!-- PANE of 4 Red Buttons  -->
+       <Pane fx:id="PaneOfRedButtons">
+           <Button layoutX="646.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="1" />
+           <Button layoutX="715.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="2" />
+           <Button layoutX="783.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="3" />
+           <Button layoutX="850.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="4" />
+       </Pane>
+       <!-- PANE of 4 BLUE Buttons  -->
+       <Pane fx:id="PaneOfBlueButtons">
+           <Button layoutX="646.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="1" />
+           <Button layoutX="715.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="2" />
+           <Button layoutX="783.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="3" />
+           <Button layoutX="850.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="4" />
+       </Pane>
+       <!-- PANE of 4 YELLOW BUTTONS -->
+       <Pane fx:id="PaneOfYellowButtons">
+           <Button layoutX="646.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="1" />
+           <Button layoutX="715.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="2" />
+           <Button layoutX="783.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="3" />
+           <Button layoutX="850.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="4" />
+       </Pane>
+       <!-- PANE of 4 GREEN BUTTONS -->
+       <Pane fx:id="PaneOfGreenButtons">
+           <Button layoutX="646.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="1" />
+           <Button layoutX="715.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="2" />
+           <Button layoutX="783.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="3" />
+           <Button layoutX="850.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="4" />
+       </Pane>
    </children>
 </StackPane>
