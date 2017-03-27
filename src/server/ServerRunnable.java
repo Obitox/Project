@@ -103,18 +103,30 @@ public class ServerRunnable implements Runnable {
                         response.setDoneAction("none");
                         response.setMessage("Player is already signed in");
                         response.setObject(null);
-                    } else if ( numberOfSignInPlayers++ < MAX_PLAYERS){
+                    } else if ( signInPlayers.size() < MAX_PLAYERS){
                         response = new Response();
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("signIn");
                         response.setMessage("Successful sign in");
                         response.setObject(null);
-                        signInPlayers.add(new Player(dbPlayer.getId(), dbPlayer.getUsername(), dbPlayer.getPassword()));
+                        signInPlayers.add(dbPlayer);
+                        System.out.println("Broj ulogovanih (posle dodavanja): " + signInPlayers.size());
                     } else {
                         response = new Response();
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("none");
                         response.setMessage("Max number of players is " + MAX_PLAYERS + ". You must wait!");
+                        response.setObject(null);
+                    }
+                    break;
+                case "signOut":
+                    if (isAlreadySignIn(dbPlayer)){
+                        response = new Response();
+                        response.setPlayer(dbPlayer);
+                        response.setDoneAction("signOut");
+                        response.setMessage("Player is signed out");
+                        this.removePlayerFromList(signInPlayers, dbPlayer);
+                        System.out.println("Broj ulogovanih (posle izbacivanja): " + signInPlayers.size());
                         response.setObject(null);
                     }
                     break;
@@ -142,7 +154,7 @@ public class ServerRunnable implements Runnable {
                     break;
                 default:
                     response = new Response();
-                    response.setPlayer(null);
+                    response.setPlayer(dbPlayer);
                     response.setDoneAction("none");
                     response.setMessage("Unknown request!");
                     response.setObject(null);
@@ -155,6 +167,18 @@ public class ServerRunnable implements Runnable {
             response.setObject(null);
         }
         return response;
+    }
+
+    private boolean removePlayerFromList(List<Player> players, Player player){
+        int index = -1;
+        for(int i= 0; i<players.size(); i++){
+            if (players.get(i).getId() == player.getId()){
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) players.remove(index);
+        return false;
     }
 
     private boolean isAlreadySignIn(Player dbPlayer){
