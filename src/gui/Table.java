@@ -235,6 +235,8 @@ public class Table extends Thread implements EventHandler {
         {
             dice = random.nextInt(6)+1;
             System.out.println("Dice roll: "+dice);
+
+
             return dice;
         }else
             {
