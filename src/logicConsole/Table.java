@@ -4,7 +4,8 @@ public class Table {
     /*
     4xH
     4xP
-    int[40]
+    int
+
      */
   private House redHouse;
   private House greenHouse;
