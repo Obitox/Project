@@ -8,6 +8,7 @@ public class Request implements Serializable{
     private String action;
     private Player player;
     private Object object;
+    private int figureMove;
 
     public Request (){
 
@@ -43,6 +44,14 @@ public class Request implements Serializable{
 
     public void setObject(Object object) {
         this.object = object;
+    }
+
+    public int getFigureMove() {
+        return figureMove;
+    }
+
+    public void setFigureMove(int figureMove) {
+        this.figureMove = figureMove;
     }
 
     @Override

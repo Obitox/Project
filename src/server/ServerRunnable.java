@@ -160,15 +160,7 @@ public class ServerRunnable implements Runnable {
 //                    }
                     break;
                 case "myMove":
-//                    odgovor = new Odgovor();
-//                    int id = zahtev.getId();
-//                    try{
-//                        dbManager.cancelBooking(id);
-//                        odgovor.setOdradjenaAkcija("cancelBooking");
-//                    } catch(CancelBookingException cbe){
-//                        odgovor.setMessage(cbe.getMessage());
-//                    }
-                    //TO DO
+//                  //TO DO
                     if (isAlreadySignIn(dbPlayer)){
                         response = new Response();
 

@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -52,6 +53,13 @@ public class Client extends Application {
     private Label lblPlayer;
     private Label lblDoneAction;
     private Label lblMessage;
+
+    private Button btnFigura1;
+    private Button btnFigura2;
+    private Button btnFigura3;
+    private Button btnFigura4;
+    private Button passON;
+
     private Button btnSignOut;
 
     private Player player = null;
@@ -138,6 +146,27 @@ public class Client extends Application {
         lblDoneAction = new Label("doneAction");
         lblMessage = new Label("message");
 
+
+        //BUTTONS FOR TESTINH
+        btnFigura1 = new Button("1");
+        btnFigura2 = new Button("2");
+        btnFigura3 = new Button("3");
+        btnFigura4 = new Button("4");
+        passON = new Button("0");
+
+        btnFigura1.setOnAction(event -> { onMyMove(event); });
+        btnFigura2.setOnAction(event -> { onMyMove(event); });
+        btnFigura3.setOnAction(event -> { onMyMove(event); });
+        btnFigura4.setOnAction(event -> { onMyMove(event); });
+        passON.setOnAction(event -> { onMyMove(event); });
+
+
+        //INIT BUTTONS
+        HBox hBox = new HBox(10);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().addAll(btnFigura1,btnFigura2, btnFigura3,btnFigura4, passON);
+
+
         btnSignOut = new Button("Sign out");
         btnSignOut.setOnAction(event -> {
             onSignOut();
@@ -146,7 +175,7 @@ public class Client extends Application {
         //layout2 scene2
         VBox layout2 = new VBox(20);
         layout2.setAlignment(Pos.CENTER);
-        layout2.getChildren().addAll(sceneTitle, lblPlayer, lblDoneAction, lblMessage, btnSignOut);
+        layout2.getChildren().addAll(sceneTitle, lblPlayer, lblDoneAction, lblMessage, hBox , btnSignOut);
         return new Scene (layout2, SCENE_MIN_WIDTH, SCENE_MIN_HEIGHT);
     }
 
@@ -244,39 +273,40 @@ public class Client extends Application {
 //        window.setScene(logInScene);
     }
 
-    private void onMyMove(){
-
+    private void onMyMove(javafx.event.ActionEvent event){
+        String text = ((Button)event.getSource()).getText();
+        int figureMove = Integer.parseInt(text);
+        System.out.println(figureMove);
         // kreiramo obj request
         Request request = new Request("myMove", player);
-
-        try {
-            Socket clientSocket = new Socket(HOST, PORT);
-
-            OutputStream outToServer = clientSocket.getOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
-            oos.writeObject(request);
-            oos.flush();
-            System.out.println("Poslat zahtev: " + request);
-
-            InputStream inFromServer = clientSocket.getInputStream();
-            ObjectInputStream ois = new ObjectInputStream(inFromServer);
-
-            Response response = (Response) ois.readObject();
-            clientSocket.close();
-            System.out.println("Primljen odgovor: "+response);
-
-            this.doOnResponse(response);
-
-        } catch (UnknownHostException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        request.setFigureMove(figureMove);
 //
-//        messageLabel.setText("Successugul sign out");
-//        window.setScene(logInScene);
+//        try {
+//            Socket clientSocket = new Socket(HOST, PORT);
+//
+//            OutputStream outToServer = clientSocket.getOutputStream();
+//            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
+//            oos.writeObject(request);
+//            oos.flush();
+//            System.out.println("Poslat zahtev: " + request);
+//
+//            InputStream inFromServer = clientSocket.getInputStream();
+//            ObjectInputStream ois = new ObjectInputStream(inFromServer);
+//
+//            Response response = (Response) ois.readObject();
+//            clientSocket.close();
+//            System.out.println("Primljen odgovor: "+response);
+//
+//            this.doOnResponse(response);
+//
+//        } catch (UnknownHostException e1) {
+//            e1.printStackTrace();
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     private void doOnResponse (Response response){
@@ -299,6 +329,7 @@ public class Client extends Application {
         } else if(response.getDoneAction().equals("myMove")){
             clearAllLogInFields();
             // TO DO
+            System.out.println(response.getMessage());
         } else {
             clearAllLogInFields();
             messageLabel.setText("Sign in is not successful! " + response.getMessage());
@@ -310,6 +341,7 @@ public class Client extends Application {
         lblPlayer.setText(String.valueOf(player));
         lblDoneAction.setText(doneAction);
         lblMessage.setText(message);
+
     }
 
 
