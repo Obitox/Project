@@ -207,5 +207,26 @@ public class Logic {
         }
         else return false;
     }
+    public static boolean isParkingFull(){
+        Parking parkingTurn=table.getParkingWithID(table.getHouseID());
+
+        for (int i=0;i<parkingTurn.getFields().length;i++){
+            if(parkingTurn.getFields()[i]==0) return false;
+        }
+        return true;
+    }
+
+    public  static boolean isParkingInOrder(){
+        boolean b1=false;
+        boolean b2=false;
+
+        Parking parkingTurn=table.getParkingWithID(table.getHouseID());
+
+        for (int i=parkingTurn.getFields().length-1;i>=0;i--){
+            if(b1==false && parkingTurn.getFields()[i]==0) b1=true;
+            if(b1==true&&b2==false&&parkingTurn.getFields()[i]!=0) b2=true;
+        }
+        return !(b1&&b2);
+    }
 }
 

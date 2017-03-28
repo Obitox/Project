@@ -18,7 +18,8 @@ public class Game extends Thread {
         boolean game=true;
         Scanner sc= new Scanner(System.in);
         Logic.setTable(table);
-        while(true){
+        boolean gameOver=true;
+        while(gameOver){
 
             System.out.println("It's player "+table.getHouseID()+" turn");
 
@@ -28,7 +29,7 @@ public class Game extends Thread {
                 for (int i = 0; i < 3; i++) {
                     table.setDiceValue(Dice.diceRoll());
                     System.out.println("Player " + table.getHouseID() + " rolled: " + table.getDiceValue());
-                    if (table.getDiceValue() == 6 || playerInGame) break;
+                    if (table.getDiceValue() == 6 || playerInGame||!Logic.isParkingInOrder()) break;
                 }
 
                 boolean uslov;
@@ -39,7 +40,9 @@ public class Game extends Thread {
                     else uslov=true;
 
                 } while (!uslov);
+
             }while(table.getDiceValue()==6);
+            gameOver=!Logic.isParkingFull();
 
 
             table.incHouseID();

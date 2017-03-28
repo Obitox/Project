@@ -34,14 +34,14 @@ public class House {
         return (this.id-1)*10;
     }
     private int calcEndPosition(){
-         return (this.startPosition+39)%40;
+        return (this.startPosition+39)%40;
     }
     private void initFigures(){
         this.figures=new Figure[4];
         for (int i=0;i<figures.length;i++) figures[i]=new Figure(this.id,this.startPosition);
-     }
+    }
 
-     //Game methods
+    //Game methods
     public void resetFigure(int figureID){
         int houseID=(figureID-(figureID)%10)/10;
 
@@ -61,8 +61,14 @@ public class House {
 
     }
     public boolean isInGame(){
-        for (int i=0;i<figures.length;i++) if(figures[i].isInGame()==true) return true;
-        return false;
+       // for (int i=0;i<figures.length;i++) if(figures[i].isInGame()) return true;
+      //  return false;
+        boolean b1=Logic.isParkingInOrder();
+        boolean b2=false;
+        for (int i=0;i<figures.length;i++) {
+            if(figures[i].isInGame()&&!figures[i].isInParking()) b2=true;
+        }
+        return !b1||b2;
     }
 
     public Figure[] getFigures() {
@@ -90,8 +96,8 @@ public class House {
         String out="House "+this.id+": ";
 
         for(int i=0;i<figures.length;i++){
-         if(!this.figures[i].isInGame())   out+=""+figures[i].getId()+" ";
-         else out+=""+0+" ";
+            if(!this.figures[i].isInGame())   out+=""+figures[i].getId()+" ";
+            else out+=""+0+" ";
         }
 
         return out+"\n";
