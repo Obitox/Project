@@ -280,32 +280,32 @@ public class Client extends Application {
         // kreiramo obj request
         Request request = new Request("myMove", player);
         request.setFigureMove(figureMove);
-//
-//        try {
-//            Socket clientSocket = new Socket(HOST, PORT);
-//
-//            OutputStream outToServer = clientSocket.getOutputStream();
-//            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
-//            oos.writeObject(request);
-//            oos.flush();
-//            System.out.println("Poslat zahtev: " + request);
-//
-//            InputStream inFromServer = clientSocket.getInputStream();
-//            ObjectInputStream ois = new ObjectInputStream(inFromServer);
-//
-//            Response response = (Response) ois.readObject();
-//            clientSocket.close();
-//            System.out.println("Primljen odgovor: "+response);
-//
-//            this.doOnResponse(response);
-//
-//        } catch (UnknownHostException e1) {
-//            e1.printStackTrace();
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+
+        try {
+            Socket clientSocket = new Socket(HOST, PORT);
+
+            OutputStream outToServer = clientSocket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
+            oos.writeObject(request);
+            oos.flush();
+            System.out.println("Poslat zahtev: " + request);
+
+            InputStream inFromServer = clientSocket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(inFromServer);
+
+            Response response = (Response) ois.readObject();
+            clientSocket.close();
+            System.out.println("Primljen odgovor: "+response);
+
+            this.doOnResponse(response);
+
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -330,6 +330,7 @@ public class Client extends Application {
             clearAllLogInFields();
             // TO DO
             System.out.println(response.getMessage());
+
         } else {
             clearAllLogInFields();
             messageLabel.setText("Sign in is not successful! " + response.getMessage());

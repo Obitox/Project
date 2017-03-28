@@ -40,6 +40,7 @@ public class ServerRunnableTest implements Runnable  {
     private Table tabla;
 
     public ServerRunnableTest(){
+
         this.running = true;
         try {
             //DB db = DB.getInstance();
@@ -80,22 +81,18 @@ public class ServerRunnableTest implements Runnable  {
                 System.out.println("Zahtev: " + request);
                 System.out.println("Prihvacen sa: " + server.getRemoteSocketAddress());
 
-                    boolean playerInGame=tabla.getHouseTurn().isInGame();
-                    for (int i = 0; i < 3; i++) {
-                        tabla.setDiceValue(Dice.diceRoll());
-                        System.out.println("Player " + tabla.getHouseID() + " rolled: " + tabla.getDiceValue());
-                        if (tabla.getDiceValue() == 6 || playerInGame||!Logic.isParkingInOrder()) break;
-                    }
+
+                //Nenadov kod
+                boolean playerInGame=tabla.getHouseTurn().isInGame();
+                for (int i = 0; i < 3; i++) {
+                    tabla.setDiceValue(Dice.diceRoll());
+                    System.out.println("Player " + tabla.getHouseID() + " rolled: " + tabla.getDiceValue());
+                    if (tabla.getDiceValue() == 6 || playerInGame||!Logic.isParkingInOrder()) break;
+                }
+                System.out.println("Outside of for loop!!!");
 
 
-
-
-                        Response response = createResponse(request);
-
-
-
-
-               // Response response = createResponse(request);
+                Response response = createResponse(request);
 
                 ObjectOutputStream oos = new ObjectOutputStream(server.getOutputStream());
                 oos.writeObject(response);
@@ -183,43 +180,34 @@ public class ServerRunnableTest implements Runnable  {
 //                    }
                     break;
                 case "myMove":
-//                    odgovor = new Odgovor();
-//                    int id = zahtev.getId();
-//                    try{
-//                        dbManager.cancelBooking(id);
-//                        odgovor.setOdradjenaAkcija("cancelBooking");
-//                    } catch(CancelBookingException cbe){
-//                        odgovor.setMessage(cbe.getMessage());
-//                    }
 
-                        boolean moveSuccessful=Logic.move(request.getFigureMove());
-                                if(moveSuccessful){
-                                    response = new Response();
-                                    Player responsePlayer = request.getPlayer();
-                                    response.setPlayer(responsePlayer);
-                                    response.setDoneAction("myMove");
-                                    response.setMessage(tabla.toString());
-                                    tabla.incHouseID();
-
-
-                                }else{
-
-                                }
-
-                    //TO DO
-                    if (isAlreadySignIn(dbPlayer)){
+                    boolean moveSuccessful=Logic.move(request.getFigureMove());
+                    if(moveSuccessful){
                         response = new Response();
-
                         Player responsePlayer = request.getPlayer();
-
                         response.setPlayer(responsePlayer);
                         response.setDoneAction("myMove");
-                        response.setMessage("Player played his move");
+                        response.setMessage(tabla.toString());
+                        tabla.incHouseID();
 
-                        //TO DO ???
+                    }else{
 
-                        response.setTable(null);
                     }
+
+                    //TO DO
+//                    if (isAlreadySignIn(dbPlayer)){
+//                        response = new Response();
+//
+//                        Player responsePlayer = request.getPlayer();
+//
+//                        response.setPlayer(responsePlayer);
+//                        response.setDoneAction("myMove");
+//                        response.setMessage("Player played his move");
+//
+//                        //TO DO ???
+//
+//                        response.setTable(null);
+//                    }
                     break;
                 default:
                     response = new Response();
