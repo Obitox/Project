@@ -8,7 +8,7 @@ public class Player implements Serializable {
     private int id;
     private String username;
     private String password;
-    private Color color;
+    private String color;
 
     public Player(){
     }
@@ -26,7 +26,7 @@ public class Player implements Serializable {
         this.password = password;
     }
 
-    public Player(int id, String username, String password, Color color){
+    public Player(int id, String username, String password, String color){
         this.id = id;
         this.username = username;
         this.password = password;
@@ -45,7 +45,7 @@ public class Player implements Serializable {
         return password;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
@@ -61,7 +61,7 @@ public class Player implements Serializable {
         this.password = password;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

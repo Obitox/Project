@@ -25,8 +25,8 @@ import java.net.UnknownHostException;
 
 public class Client extends Application {
 
-    private static final String HOST = "192.168.99.109";
-    //private static final String HOST = "127.0.0.1";
+    //private static final String HOST = "192.168.99.109";
+    private static final String HOST = "127.0.0.1";
     private static final int PORT = 9000;
 
     private static final String CLIENT_WINDOW_TITLE = "Client window";
@@ -155,15 +155,13 @@ public class Client extends Application {
         passwordField.setText("");
     }
 
-    private boolean checkUsernamePassword(String username, String password){
-
-        //TO DO Provera username-a i password-a
-
-        if(username.equals("pera.peric" )&& password.equals("password1")){
-            return true;
-        }
-        return false;
-    }
+//    private boolean checkUsernamePassword(String username, String password){
+//        //TO DO Provera username-a i password-a
+//        if(username.equals("pera.peric" )&& password.equals("password1")){
+//            return true;
+//        }
+//        return false;
+//    }
 
     private void onSignIn(){
         String username = usernameTextField.getText();
