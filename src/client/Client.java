@@ -48,14 +48,14 @@ public class Client extends Application {
     private Button btnSignIn;
 
     Scene playingScene;
-    private Label sceneTitle = new Label("Playing scene");
-    private Label lblPlayer = new Label("player");
-    private Label lblDoneAction = new Label("doneAction");
-    private Label lblMessage = new Label("message");
-    private Button btnSignOut = new Button("Sign out");
+    private Label sceneTitle;
+    private Label lblPlayer;
+    private Label lblDoneAction;
+    private Label lblMessage;
+    private Button btnSignOut;
 
     private Player player = null;
-    private Object table = null;
+    private int[] table = null;
 
     //
 
@@ -244,6 +244,41 @@ public class Client extends Application {
 //        window.setScene(logInScene);
     }
 
+    private void onMyMove(){
+
+        // kreiramo obj request
+        Request request = new Request("myMove", player);
+
+        try {
+            Socket clientSocket = new Socket(HOST, PORT);
+
+            OutputStream outToServer = clientSocket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(outToServer);
+            oos.writeObject(request);
+            oos.flush();
+            System.out.println("Poslat zahtev: " + request);
+
+            InputStream inFromServer = clientSocket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(inFromServer);
+
+            Response response = (Response) ois.readObject();
+            clientSocket.close();
+            System.out.println("Primljen odgovor: "+response);
+
+            this.doOnResponse(response);
+
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+//
+//        messageLabel.setText("Successugul sign out");
+//        window.setScene(logInScene);
+    }
+
     private void doOnResponse (Response response){
         player = response.getPlayer();
         String doneAction = response.getDoneAction();
@@ -259,7 +294,7 @@ public class Client extends Application {
             window.setScene(logInScene);
         }else if(response.getDoneAction().equals("refreshTable")){
             clearAllLogInFields();
-            table = response.getObject();
+            table = response.getTable();
             // TO DO
         } else if(response.getDoneAction().equals("myMove")){
             clearAllLogInFields();

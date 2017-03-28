@@ -3,23 +3,25 @@ package communication;
 import client.Player;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Response implements Serializable {
-    private Object object;
+    private int[] table;
     private Player player;
     private String doneAction;
     private String message;
 
     public Response(){
 
+
     }
 
-    public Object getObject() {
-        return object;
+    public int[] getTable() {
+        return table;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setTable(int[] table) {
+        this.table = table;
     }
 
     public Player getPlayer() {
@@ -49,7 +51,7 @@ public class Response implements Serializable {
     @Override
     public String toString() {
         return "Response{" +
-                "object=" + object +
+                "tabla=" + Arrays.toString(table) +
                 ", player=" + player +
                 ", doneAction='" + doneAction + '\'' +
                 ", message='" + message + '\'' +

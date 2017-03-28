@@ -20,8 +20,9 @@ public class ServerRunnable implements Runnable {
 
     public static final int MAX_PLAYERS = 4;
     public static final int MIN_PLAYERS = 2;
-    public static final Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW};
-    public static int numberOfSignInPlayers = 0;
+    public static final String[] colors = {"red", "blue", "green", "yellow"};
+    public static final int NUMBER_OF_FIELDS = 40;
+    public static volatile int numberOfSignInPlayers = 0;
 
     private volatile boolean running;
 
@@ -30,6 +31,8 @@ public class ServerRunnable implements Runnable {
     private List<Player> allPlayers;
     private List<Player> signInPlayers;
 
+    private int[] tabla;
+
     public ServerRunnable(){
         this.running = true;
         try {
@@ -37,6 +40,8 @@ public class ServerRunnable implements Runnable {
             dbManager = new DbManager();
             allPlayers = dbManager.getAllPlayers();
             signInPlayers = new ArrayList<Player>();
+            tabla = new int[] {0,0,0,0,0,0,0,0,0,0};
+
             serverSocket = new ServerSocket(PORT);
             System.out.println("Kreiran serverSocket");
         } catch (IOException e) {
@@ -102,32 +107,44 @@ public class ServerRunnable implements Runnable {
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("none");
                         response.setMessage("Player is already signed in");
-                        response.setObject(null);
+                        response.setTable(null);
                     } else if ( signInPlayers.size() < MAX_PLAYERS){
                         response = new Response();
+                        this.setColorOfPlayer(dbPlayer);
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("signIn");
                         response.setMessage("Successful sign in");
-                        response.setObject(null);
+                        response.setTable(tabla);
                         signInPlayers.add(dbPlayer);
-                        System.out.println("Broj ulogovanih (posle dodavanja): " + signInPlayers.size());
+                        ++numberOfSignInPlayers;
+                        //System.out.println("Broj ulogovanih (posle dodavanja): " + signInPlayers.size());
+                        System.out.println("Broj ulogovanih (posle dodavanja): " + numberOfSignInPlayers);
                     } else {
                         response = new Response();
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("none");
                         response.setMessage("Max number of players is " + MAX_PLAYERS + ". You must wait!");
-                        response.setObject(null);
+                        response.setTable(null);
                     }
                     break;
                 case "signOut":
                     if (isAlreadySignIn(dbPlayer)){
                         response = new Response();
-                        response.setPlayer(dbPlayer);
+
+                        Player responsePlayer = request.getPlayer();
+                        responsePlayer.setId(-1);
+                        responsePlayer.setPassword("");
+                        responsePlayer.setColor("");
+
+                        response.setPlayer(responsePlayer);
                         response.setDoneAction("signOut");
                         response.setMessage("Player is signed out");
-                        this.removePlayerFromList(signInPlayers, dbPlayer);
-                        System.out.println("Broj ulogovanih (posle izbacivanja): " + signInPlayers.size());
-                        response.setObject(null);
+                        response.setTable(null);
+                        //this.removePlayerFromList(signInPlayers, responsePlayer);
+                        signInPlayers.remove(responsePlayer);
+                        --numberOfSignInPlayers;
+
+                        System.out.println("Broj ulogovanih (posle izbacivanja): " + numberOfSignInPlayers);
                     }
                     break;
                 case "refreshTable":
@@ -151,35 +168,55 @@ public class ServerRunnable implements Runnable {
 //                    } catch(CancelBookingException cbe){
 //                        odgovor.setMessage(cbe.getMessage());
 //                    }
+                    //TO DO
+                    if (isAlreadySignIn(dbPlayer)){
+                        response = new Response();
+
+                        Player responsePlayer = request.getPlayer();
+
+                        response.setPlayer(responsePlayer);
+                        response.setDoneAction("myMove");
+                        response.setMessage("Player played his move");
+
+                        //TO DO ???
+
+                        response.setTable(null);
+                    }
                     break;
                 default:
                     response = new Response();
                     response.setPlayer(dbPlayer);
                     response.setDoneAction("none");
                     response.setMessage("Unknown request!");
-                    response.setObject(null);
+                    response.setTable(null);
             }
         } else {
             response = new Response();
             response.setPlayer(null);
             response.setDoneAction("none");
             response.setMessage("Unknown user!");
-            response.setObject(null);
+            response.setTable(null);
         }
+
         return response;
     }
 
-    private boolean removePlayerFromList(List<Player> players, Player player){
-        int index = -1;
-        for(int i= 0; i<players.size(); i++){
-            if (players.get(i).getId() == player.getId()){
-                index = i;
-                break;
-            }
-        }
-        if (index != -1) players.remove(index);
-        return false;
+    private void setColorOfPlayer(Player dbPlayer){
+        int i = signInPlayers.size();
+        dbPlayer.setColor(colors[i]);
     }
+
+//    private boolean removePlayerFromList(List<Player> players, Player player){
+//        int index = -1;
+//        for(int i= 0; i<players.size(); i++){
+//            if (players.get(i).getId() == player.getId()){
+//                index = i;
+//                break;
+//            }
+//        }
+//        if (index != -1) players.remove(index);
+//        return false;
+//    }
 
     private boolean isAlreadySignIn(Player dbPlayer){
         for (Player p: signInPlayers){

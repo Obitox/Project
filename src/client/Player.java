@@ -71,7 +71,7 @@ public class Player implements Serializable {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", color=" + color +
+                ", color='" + color + '\'' +
                 '}';
     }
 }
