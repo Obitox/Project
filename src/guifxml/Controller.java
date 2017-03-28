@@ -14,74 +14,8 @@ public class Controller {
     // ALL FIELDS
     //Pane of FIELDS - Connection with FXML
     @FXML
-    Pane PaneOfFields;
+    Pane PaneOfEverything;
     // END OF ALL FIELDS
-
-
-
-    //ALL PARKINGS CONNECTIONS WITH FXML
-    //Pane of Red Parking - Connection with FXML
-    @FXML
-    Pane PaneOfRedParkings;
-
-    //Pane of Blue Parking - Connection with FXML
-    @FXML
-    Pane PaneOfBlueParkings;
-
-    //Pane of Yellow Parking - Connection with FXML
-    @FXML
-    Pane PaneOfYellowParkings;
-
-    //Pane of Green Parking - Connection with FXML
-    @FXML
-    Pane PaneOfGreenParkings;
-    //END OF ALL PARKINGS CONNECTIONS WITH FXML.
-
-
-
-
-
-    //ALL HOUSES CONNECTION WITH FXML
-    //Pane of RED Houses - Connection with FXML
-    @FXML
-    Pane PaneOfRedHouses;
-
-    //Pane of Blue Houses - Connection with FXML
-    @FXML
-    Pane PaneOfBlueHouses;
-
-    //Pane of Yellow Houses - Connection with FXML
-    @FXML
-    Pane PaneOfYellowHouses;
-
-    //Pane Green Houses - Connection with FXML
-    @FXML
-    Pane PaneOfGreenHouses;
-    //END OF ALL HOUSE CONNECTIONS WITH FXML
-
-
-
-
-    //ALL BUTTON CONNECTION WITH FXML
-    //PANE OF RED BUTTONS
-    @FXML
-    Pane PaneOfRedButtons;
-
-    //PANE OF BLUE BUTTONS
-    @FXML
-    Pane PaneOfBlueButtons;
-
-    //PANE OF YELLOW BUTTONS;
-    @FXML
-    Pane PaneOfYellowButtons;
-
-    //PANE OF GREEN BUTTONS
-    @FXML
-    Pane PaneOfGreenButtons;
-    //END OF ALL BUTTON CONNECTIONS WITH FXML
-
-
-
 
 
     //DECLARING PARKING ARRAYS
@@ -113,17 +47,17 @@ public class Controller {
         arrayOfFields = new Circle[40];
         for (int i=0;i<arrayOfFields.length;i++)
         {
-            arrayOfFields[i] = (Circle) PaneOfFields.getChildren().get(i);
+            arrayOfFields[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
 
-        //INIT METHOD FOR PARKING
-        initParkings();
-
-        //INIT METHOD FOR HOUSES
-        initHouses();
-
-        //INIT METHOD FOR BUTTONS
-        initButtons();
+        ////INIT METHOD FOR PARKING
+        //initParkings();
+//
+        ////INIT METHOD FOR HOUSES
+        //initHouses();
+//
+        ////INIT METHOD FOR BUTTONS
+        //initButtons();
 
     }
 
@@ -160,21 +94,21 @@ public class Controller {
         arrayOfGreenParkings = new Circle[4];
 
         //INIT Parking Arrays with FXML Objects
-        for (int i=0;i<arrayOfRedParkings.length;i++)
+        for (int i=40;i<44;i++)
         {
-            arrayOfRedParkings[i] = (Circle) PaneOfRedParkings.getChildren().get(i);
+            arrayOfRedParkings[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfBlueParkings.length;i++)
+        for (int i=44;i<48;i++)
         {
-            arrayOfBlueParkings[i] = (Circle) PaneOfBlueParkings.getChildren().get(i);
+            arrayOfBlueParkings[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfYellowParkings.length;i++)
+        for (int i=48;i<52;i++)
         {
-            arrayOfYellowParkings[i] = (Circle) PaneOfYellowParkings.getChildren().get(i);
+            arrayOfYellowParkings[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfGreenParkings.length;i++)
+        for (int i=52;i<56;i++)
         {
-            arrayOfGreenParkings[i] = (Circle) PaneOfGreenParkings.getChildren().get(i);
+            arrayOfGreenParkings[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
     }
 
@@ -194,21 +128,21 @@ public class Controller {
         arrayOfGreenHouses = new Circle[4];
 
         //INIT HOUSE Arrays with FXML Objects
-        for (int i=0;i<arrayOfRedHouses.length;i++)
+        for (int i=56;i<60;i++)
         {
-            arrayOfRedHouses[i] = (Circle) PaneOfRedHouses.getChildren().get(i);
+            arrayOfRedHouses[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfBlueHouses.length;i++)
+        for (int i=60;i<64;i++)
         {
-            arrayOfBlueHouses[i] = (Circle) PaneOfBlueHouses.getChildren().get(i);
+            arrayOfBlueHouses[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfYellowHouses.length;i++)
+        for (int i=64;i<68;i++)
         {
-            arrayOfYellowHouses[i] = (Circle) PaneOfYellowHouses.getChildren().get(i);
+            arrayOfYellowHouses[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfGreenHouses.length;i++)
+        for (int i=68;i<72;i++)
         {
-            arrayOfGreenHouses[i] = (Circle) PaneOfGreenHouses.getChildren().get(i);
+            arrayOfGreenHouses[i] = (Circle) PaneOfEverything.getChildren().get(i);
         }
     }
 
@@ -228,21 +162,21 @@ public class Controller {
         arrayOfGreenButtons = new Button[4];
 
         //INIT BUTTON ARRAYS WITH OBJECTS FROM FXML
-        for (int i=0;i<arrayOfRedButtons.length;i++)
+        for (int i=72;i<76;i++)
         {
-            arrayOfRedButtons[i] = (Button) PaneOfRedButtons.getChildren().get(i);
+            arrayOfRedButtons[i] = (Button) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfBlueButtons.length;i++)
+        for (int i=76;i<80;i++)
         {
-            arrayOfBlueButtons[i] = (Button) PaneOfBlueButtons.getChildren().get(i);
+            arrayOfBlueButtons[i] = (Button) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfYellowButtons.length;i++)
+        for (int i=80;i<84;i++)
         {
-            arrayOfYellowButtons[i] = (Button) PaneOfYellowButtons.getChildren().get(i);
+            arrayOfYellowButtons[i] = (Button) PaneOfEverything.getChildren().get(i);
         }
-        for (int i=0;i<arrayOfGreenButtons.length;i++)
+        for (int i=84;i<88;i++)
         {
-            arrayOfGreenButtons[i] = (Button) PaneOfGreenButtons.getChildren().get(i);
+            arrayOfGreenButtons[i] = (Button) PaneOfEverything.getChildren().get(i);
         }
 
     }

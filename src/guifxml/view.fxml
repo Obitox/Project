@@ -8,7 +8,7 @@
 <StackPane fx:id="stackPane" prefHeight="531.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guifxml.Controller">
    <children>
        <!-- PANE of 40 Fields -->
-      <Pane fx:id="PaneOfFields" prefHeight="200.0" prefWidth="200.0">
+      <Pane fx:id="PaneOfEverything" prefHeight="200.0" prefWidth="200.0">
          <children>
             <Circle fill="BLACK" layoutX="116.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fill="BLACK" layoutX="146.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
@@ -50,95 +50,71 @@
             <Circle fill="BLACK" layoutX="116.0" layoutY="161.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fill="BLACK" layoutX="116.0" layoutY="125.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fill="BLACK" layoutX="116.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-         </children>
-      </Pane>
-       <Pane>
-           <Button fx:id="btnTest" onAction="#Clicked">
-           </Button>
-       </Pane>
        <!-- PANE of 4 Red Parkings -->
-       <Pane fx:id="PaneOfRedParkings">
            <Circle fill="RED" layoutX="146.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="RED" layoutX="176.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="RED" layoutX="206.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="RED" layoutX="236.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
        <!-- PANE of 4 Blue Parkings -->
-       <Pane fx:id="PaneOfBlueParkings">
            <Circle fill="BLUE" layoutX="405.0" layoutY="88.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="BLUE" layoutX="405.0" layoutY="118.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="BLUE" layoutX="405.0" layoutY="148.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="BLUE" layoutX="405.0" layoutY="178.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
        <!-- PANE of 4 Yellow Parkings -->
-       <Pane fx:id="PaneOfYellowParkings">
            <Circle fill="YELLOW" layoutX="406.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="YELLOW" layoutX="373.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="YELLOW" layoutX="342.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="YELLOW" layoutX="311.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
+
        <!-- PANE of 4 Green Parkings -->
-       <Pane fx:id="PaneOfGreenParkings">
            <Circle fill="GREEN" layoutX="146.0" layoutY="350.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="GREEN" layoutX="146.0" layoutY="320.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="GREEN" layoutX="146.0" layoutY="290.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="GREEN" layoutX="146.0" layoutY="260.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
+
        <!-- PANE of 4 Red Houses -->
-       <Pane fx:id="PaneOfRedHouses">
+
            <Circle fill="RED" layoutX="520.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="RED" layoutX="550.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="RED" layoutX="580.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="RED" layoutX="610.0" layoutY="55.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
+
        <!-- PANE of 4 Blue Houses -->
-       <Pane fx:id="PaneOfBlueHouses">
            <Circle fill="BLUE" layoutX="520.0" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="BLUE" layoutX="550" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="BLUE" layoutX="580.0" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="BLUE" layoutX="610.0" layoutY="95.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
        <!-- PANE of 4 Yellow Houses -->
-       <Pane fx:id="PaneOfYellowHouses">
            <Circle fill="YELLOW" layoutX="520.0" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="YELLOW" layoutX="550" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="YELLOW" layoutX="580.0" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="YELLOW" layoutX="610.0" layoutY="135.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
        <!-- PANE of 4 Green Houses -->
-       <Pane fx:id="PaneOfGreenHouses">
            <Circle fill="GREEN" layoutX="520.0" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="GREEN" layoutX="550" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="GREEN" layoutX="580.0" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
            <Circle fill="GREEN" layoutX="610.0" layoutY="175.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-       </Pane>
        <!-- PANE of 4 Red Buttons  -->
-       <Pane fx:id="PaneOfRedButtons">
            <Button layoutX="646.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="1" />
            <Button layoutX="715.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="2" />
            <Button layoutX="783.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="3" />
            <Button layoutX="850.0" layoutY="43.0" prefHeight="25.0" prefWidth="61.0" text="4" />
-       </Pane>
        <!-- PANE of 4 BLUE Buttons  -->
-       <Pane fx:id="PaneOfBlueButtons">
            <Button layoutX="646.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="1" />
            <Button layoutX="715.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="2" />
            <Button layoutX="783.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="3" />
            <Button layoutX="850.0" layoutY="85.0" prefHeight="25.0" prefWidth="61.0" text="4" />
-       </Pane>
        <!-- PANE of 4 YELLOW BUTTONS -->
-       <Pane fx:id="PaneOfYellowButtons">
            <Button layoutX="646.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="1" />
            <Button layoutX="715.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="2" />
            <Button layoutX="783.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="3" />
            <Button layoutX="850.0" layoutY="125.0" prefHeight="25.0" prefWidth="61.0" text="4" />
-       </Pane>
        <!-- PANE of 4 GREEN BUTTONS -->
-       <Pane fx:id="PaneOfGreenButtons">
            <Button layoutX="646.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="1" />
            <Button layoutX="715.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="2" />
            <Button layoutX="783.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="3" />
            <Button layoutX="850.0" layoutY="165.0" prefHeight="25.0" prefWidth="61.0" text="4" />
-       </Pane>
+   </children>
+      </Pane>
    </children>
 </StackPane>
