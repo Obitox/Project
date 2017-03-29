@@ -77,42 +77,33 @@ public class DbManager {
         return player;
     }
 
-//    public boolean book(int id, String klijent, String datum) throws BookingException {
-//        DB db = DB.getInstanca();
-//        Soba soba = selectSoba(id);
-//        if(soba.getKlijent() != null){
-//            throw new BookingException("Soba je vec bukirana!");
-//        }
-//
-//        String sql = "UPDATE sobe " +
-//                "SET klijent='" + klijent +"', datum='"+ datum + "' " +
-//                "WHERE id=" + id;
-//
-//        if(db.uidUpit(sql) > 0) {
-//            System.out.println("Soba je uspesno update-ovana u Bazi!");
-//            return true;
-//        } else {
-//            System.out.println("Soba je nije update-ovana u Bazi!");
-//            return false;
-//        }
-//    }
-//
-//    public boolean cancelBooking(int id) throws CancelBookingException{
-//        DB db = DB.getInstanca();
-//        Soba soba = selectSoba(id);
-//        if(soba.getKlijent() == null){
-//            throw new CancelBookingException("Soba je vec otkazana!");
-//        }
-//        String sql = "UPDATE sobe " +
-//                "SET klijent=" + null +", datum="+ null + " " +
-//                "WHERE id=" + id;
-//        if(db.uidUpit(sql) > 0) {
-//            System.out.println("Soba je uspesno update-ovana u Bazi!");
-//            return true;
-//        } else {
-//            System.out.println("Soba je nije update-ovana u Bazi!");
-//            return false;
-//        }
-//    }
+    public boolean updatePlayer(int id, String username, String password) {
+
+        String sql = "UPDATE players " +
+                     "SET username='" + username +"', password='"+ password+ "' " +
+                     "WHERE id=" + id;
+
+        if(db.uidUpit(sql) > 0) {
+            System.out.println("Igrac je uspesno update-ovan u Bazi!");
+            return true;
+        } else {
+            System.out.println("Igrac nije update-ovan u Bazi!");
+            return false;
+        }
+    }
+
+    public boolean createPlayer(String username, String password) {
+
+        String sql = "INSERT INTO players (username, password)" +
+                     "VALUES ('" + username +"', '"+ password+ "' )";
+
+        if(db.uidUpit(sql) > 0) {
+            System.out.println("Igrac je uspesno kreiran u Bazi!");
+            return true;
+        } else {
+            System.out.println("Igrac nije kreiran u Bazi!");
+            return false;
+        }
+    }
 
 }

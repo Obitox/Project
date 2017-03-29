@@ -15,6 +15,7 @@ public class DB {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost/vlatacom_baza","root","");
+            //DriverManager.getConnection("jdbc:mysql://192.168.99.109:3306/vlatacom_baza", "vlatacom", "123");
             System.out.println("Uspesna konekcija!");
         }catch(Exception e){
             System.out.println("Neuspesna konekcija!");

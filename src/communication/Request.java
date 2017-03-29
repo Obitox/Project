@@ -9,6 +9,7 @@ public class Request implements Serializable{
     private Player player;
     private Object object;
     private int figureMove;
+    private int diceValue;
 
     public Request (){
 
@@ -54,12 +55,22 @@ public class Request implements Serializable{
         this.figureMove = figureMove;
     }
 
+    public int getDiceValue() {
+        return diceValue;
+    }
+
+    public void setDiceValue(int diceValue) {
+        this.diceValue = diceValue;
+    }
+
     @Override
     public String toString() {
         return "Request{" +
                 "action='" + action + '\'' +
                 ", player=" + player +
                 ", object=" + object +
+                ", figureMove=" + figureMove +
+                ", diceValue=" + diceValue +
                 '}';
     }
 }

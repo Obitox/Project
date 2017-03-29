@@ -3,7 +3,6 @@ package server;
 import client.Player;
 import communication.Request;
 import communication.Response;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -31,7 +30,7 @@ public class ServerRunnable implements Runnable {
     private List<Player> allPlayers;
     private List<Player> signInPlayers;
 
-    private int[] tabla;
+    private int[] table;
 
     public ServerRunnable(){
         this.running = true;
@@ -40,7 +39,7 @@ public class ServerRunnable implements Runnable {
             dbManager = new DbManager();
             allPlayers = dbManager.getAllPlayers();
             signInPlayers = new ArrayList<Player>();
-            tabla = new int[] {0,0,0,0,0,0,0,0,0,0};
+            table = new int[] {0,0,0,0,0,0,0,0,0,0};
 
             serverSocket = new ServerSocket(PORT);
             System.out.println("Kreiran serverSocket");
@@ -72,7 +71,7 @@ public class ServerRunnable implements Runnable {
                 System.out.println("Zahtev: " + request);
                 System.out.println("Prihvacen sa: " + server.getRemoteSocketAddress());
 
-                Response response = createResponse(request);
+                Response response = this.createResponse(request);
 
                 ObjectOutputStream oos = new ObjectOutputStream(server.getOutputStream());
                 oos.writeObject(response);
@@ -104,6 +103,8 @@ public class ServerRunnable implements Runnable {
                 case "signIn":
                     if (isAlreadySignIn(dbPlayer)){
                         response = new Response();
+                        dbPlayer.setId(-1);
+                        dbPlayer.setPassword("");
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("none");
                         response.setMessage("Player is already signed in");
@@ -114,13 +115,15 @@ public class ServerRunnable implements Runnable {
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("signIn");
                         response.setMessage("Successful sign in");
-                        response.setTable(tabla);
+                        response.setTable(table);
                         signInPlayers.add(dbPlayer);
                         ++numberOfSignInPlayers;
                         //System.out.println("Broj ulogovanih (posle dodavanja): " + signInPlayers.size());
                         System.out.println("Broj ulogovanih (posle dodavanja): " + numberOfSignInPlayers);
                     } else {
                         response = new Response();
+                        dbPlayer.setId(-1);
+                        dbPlayer.setPassword("");
                         response.setPlayer(dbPlayer);
                         response.setDoneAction("none");
                         response.setMessage("Max number of players is " + MAX_PLAYERS + ". You must wait!");
@@ -140,39 +143,39 @@ public class ServerRunnable implements Runnable {
                         response.setDoneAction("signOut");
                         response.setMessage("Player is signed out");
                         response.setTable(null);
-                        //this.removePlayerFromList(signInPlayers, responsePlayer);
-                        signInPlayers.remove(responsePlayer);
+                        //NEIZBACUJE igraca iz liste ulogovanih!!!
+                        this.removePlayerFromList(request.getPlayer(), signInPlayers);
+                        //signInPlayers.remove(request.getPlayer());
+                        for(Player p : signInPlayers) System.out.println(p);
                         --numberOfSignInPlayers;
-
                         System.out.println("Broj ulogovanih (posle izbacivanja): " + numberOfSignInPlayers);
                     }
                     break;
                 case "refreshTable":
-//                    odgovor = new Odgovor();
-//                    int id = zahtev.getId();
-//                    String owner = zahtev.getOwner();
-//                    String date  = zahtev.getDate();
-//                    try{
-//                        dbManager.book(id, owner, date);
-//                        odgovor.setOdradjenaAkcija("book");
-//                    } catch(BookingException be){
-//                        odgovor.setMessage(be.getMessage());
-//                    }
+                    // TO DO
                     break;
                 case "myMove":
-//                  //TO DO
                     if (isAlreadySignIn(dbPlayer)){
                         response = new Response();
 
                         Player responsePlayer = request.getPlayer();
+                        int figureMove = request.getFigureMove();
+                        int diceValue = request.getDiceValue();
+                        String figureColor = request.getPlayer().getColor();
+
+                        System.out.println("Pomeranje figurice " + figureColor + figureMove + " za " + diceValue);
+
+                        //TO DO
+                            //Move specified figure for dice value
 
                         response.setPlayer(responsePlayer);
                         response.setDoneAction("myMove");
                         response.setMessage("Player played his move");
 
-                        //TO DO ???
-
-                        response.setTable(null);
+                        //TO DO
+                            //Refresh table
+                            //Set refreshed table to response
+                        response.setTable(table);
                     }
                     break;
                 default:
@@ -193,22 +196,20 @@ public class ServerRunnable implements Runnable {
         return response;
     }
 
+    private void removePlayerFromList(Player player, List<Player> players){
+        Player playerToRemove = null;
+        for (Player p : players){
+            if(p.getId()==player.getId()){
+                playerToRemove = p;
+            }
+        }
+        players.remove(playerToRemove);
+    }
+
     private void setColorOfPlayer(Player dbPlayer){
         int i = signInPlayers.size();
         dbPlayer.setColor(colors[i]);
     }
-
-//    private boolean removePlayerFromList(List<Player> players, Player player){
-//        int index = -1;
-//        for(int i= 0; i<players.size(); i++){
-//            if (players.get(i).getId() == player.getId()){
-//                index = i;
-//                break;
-//            }
-//        }
-//        if (index != -1) players.remove(index);
-//        return false;
-//    }
 
     private boolean isAlreadySignIn(Player dbPlayer){
         for (Player p: signInPlayers){

@@ -13,7 +13,6 @@ public class Response implements Serializable {
 
     public Response(){
 
-
     }
 
     public int[] getTable() {

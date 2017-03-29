@@ -1,6 +1,7 @@
 package client;
 import communication.Request;
 import communication.Response;
+import gui.Dice;
 import gui.Table;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -62,8 +63,9 @@ public class Client extends Application {
 
     private Button btnSignOut;
 
-    private Player player = null;
-    private int[] table = null;
+    private Player player;
+    private int[] table;
+    private Dice dice;
 
     //
 
@@ -73,6 +75,15 @@ public class Client extends Application {
     }
 
     //
+
+
+    @Override
+    public void init() throws Exception {
+        super.init();
+        player = null;
+        table = null;
+        dice = new Dice(1,6);
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -138,7 +149,6 @@ public class Client extends Application {
 
     private Scene createPlayingScene(){
         //elementi scene2
-//        sceneTitle = new Label("Playing scene");
         sceneTitle = new Label("Playing scene");
         sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
@@ -146,8 +156,7 @@ public class Client extends Application {
         lblDoneAction = new Label("doneAction");
         lblMessage = new Label("message");
 
-
-        //BUTTONS FOR TESTINH
+        //BUTTONS FOR TESTING
         btnFigura1 = new Button("1");
         btnFigura2 = new Button("2");
         btnFigura3 = new Button("3");
@@ -184,27 +193,9 @@ public class Client extends Application {
         passwordField.setText("");
     }
 
-//    private boolean checkUsernamePassword(String username, String password){
-//        //TO DO Provera username-a i password-a
-//        if(username.equals("pera.peric" )&& password.equals("password1")){
-//            return true;
-//        }
-//        return false;
-//    }
-
     private void onSignIn(){
         String username = usernameTextField.getText();
         String password = passwordField.getText();
-
-//        if(checkUsernamePassword(username, password)){
-//            messageLabel.setText("");
-//            usernameTextField.setText("");
-//            passwordField.setText("");
-//            window.setScene(playingScene);
-//        } else {
-//            window.setScene(logInScene);
-//            messageLabel.setText("Neispravan unos!");
-//        }
 
         // kreiramo moguceg igraca
         Player player = new Player(username, password);
@@ -239,7 +230,6 @@ public class Client extends Application {
     }
 
     private void onSignOut(){
-
         // kreiramo obj request
         Request request = new Request("signOut", player);
 
@@ -268,18 +258,17 @@ public class Client extends Application {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-//
-//        messageLabel.setText("Successugul sign out");
-//        window.setScene(logInScene);
     }
 
     private void onMyMove(javafx.event.ActionEvent event){
         String text = ((Button)event.getSource()).getText();
         int figureMove = Integer.parseInt(text);
         System.out.println(figureMove);
+
         // kreiramo obj request
         Request request = new Request("myMove", player);
         request.setFigureMove(figureMove);
+        request.setDiceValue(dice.diceRoll());
 
         try {
             Socket clientSocket = new Socket(HOST, PORT);
@@ -306,11 +295,11 @@ public class Client extends Application {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     private void doOnResponse (Response response){
         player = response.getPlayer();
+        table = response.getTable();
         String doneAction = response.getDoneAction();
         String message = response.getMessage();
 
@@ -324,13 +313,14 @@ public class Client extends Application {
             window.setScene(logInScene);
         }else if(response.getDoneAction().equals("refreshTable")){
             clearAllLogInFields();
-            table = response.getTable();
+            setUpPlayingScene(player,doneAction,message);
             // TO DO
+                //refresh view of the table
         } else if(response.getDoneAction().equals("myMove")){
             clearAllLogInFields();
+            setUpPlayingScene(player,doneAction, message);
             // TO DO
-            System.out.println(response.getMessage());
-
+                //refresh view of the table
         } else {
             clearAllLogInFields();
             messageLabel.setText("Sign in is not successful! " + response.getMessage());
@@ -344,6 +334,5 @@ public class Client extends Application {
         lblMessage.setText(message);
 
     }
-
 
 }
